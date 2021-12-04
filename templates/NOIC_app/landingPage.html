@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<li class="has-submenu parent-parent-menu-item">
+    <a href="#About">About</a>
+</li>
+<li class="has-submenu parent-parent-menu-item">
+    <a href="#FAQ">FAQ</a>
+</li>
+
+<li class="has-submenu parent-menu-item">
+    <a href="javascript:void(0)">Get Help</a>
+</li>
+</ul><!--end navigation menu-->
+</div><!--end navigation-->
+</div><!--end container-->
+</header><!--end header-->
+<!-- Navbar End -->
+ <!-- Hero Start -->
+<section class="bg-half-260 bg-primary d-table w-100" style="background: url('{% static 'images/pattern.jpg' %}') center center;">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="title-heading text-center mt-4">
+                    <h1 class="display-4 title-dark fw-bold text-white mb-3">N.O.I.C.</h1>
+                    <p class="para-desc mx-auto text-white-50">National Opioid Information Center:<br> Raising awareness and developing answers</p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container--> 
+</section><!--end section-->
+<!-- Hero End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+
+<section class="section" id="About">
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title mb-4 pb-2">
+                    <h4 class="title mb-4 text-center">About NOIC</h4>
+                    <p class="text-muted para-desc mb-0 mx-auto">The primary objective of NOIC is to create a portal that
+                        allows drug prescribers (including doctors, physician assistants, nurse practitioners, and
+                        anyone else with a license to prescribe) and relevant governmental agencies (e.g. U.S.
+                        Department of Health and Human Services (HHS) and the Center for Disease Control (CDC)) to
+                        observe and analyze data about all drugs prescribed (including opioids) by any prescriber in the
+                        United States.</p><br><p class="text-muted para-desc mb-0 mx-auto">Start of another paragraph.</p>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+<!-- Price start -->
+    <div id="FAQ"></div>
+    <div class="container mt-100 mt-60">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="section-title mb-4 pb-2">
+                    <h4 class="title mb-4 text-center">FAQ</h4>
+                    <h6 class="text-muted para-desc mb-0 mx-auto"><strong>What is an opioid?</strong></h6><br>
+                        <ul class="text-muted para-desc mb-0 mx-auto">
+                            <div class="text-left">
+                                <li>Prescription opioids can be prescribed by doctors to treat moderate to severe pain, but can also have serious risks and side effects.</li><br>  
+                                <li>Common prescription opioids are oxycodone (OxyContin), hydrocodone (Vicodin), morphine and methadone.</li><br>
+                                <li>Common prescription opioids are oxycodone (OxyContin), hydrocodone (Vicodin), morphine and methadone.</li><br>
+                                <li>Fentanyl is a synthetic opioid pain reliever use for treating severe pain, typically advanced cancer pain.</li><br>
+                                <li>Heroin is an illegal opioid.</li><br>
+                            </div>
+                        </ul>
+                    <h6 class="text-muted para-desc mb-0 mx-auto"><strong>What is opioid misuse?</strong></h6><br>
+                        <ul class="text-muted para-desc mb-0 mx-auto">
+                            <li>Misuse is defined as taking a prescription in higher amounts or longer than recommended by a physician, using someone else’s prescription, or using opioids to get high.</li><br>
+                            <li>25% of individuals who misuse opioids become physically dependent.</li><br>
+                        </ul>
+                    <h6 class="text-muted para-desc mb-0 mx-auto"><strong>What is opioid dependence?</strong></h6><br>
+                        <ul class="text-muted para-desc mb-0 mx-auto">
+                            <li>Dependence is defined as withdrawal when an individual stops taking an opioid.</li><br>
+                            <li>Opioid dependence can occur when opioids are taken for too long a time period or too many opioids are taken.</li><br>
+                            <li>People develop a tolerance for opioids and need to take more of a drug to get the same pain relief or prevent withdrawal symptoms.</li><br>
+                            <li>Even at low doses, taking an opioid pain reliever more than 3 months increases the risk of addiction by 15 times.</li><br>
+                            
+                        </ul>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- Price End -->
+
+<!-- Shape Start -->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-footer">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!--Shape End-->
+{% endblock %}

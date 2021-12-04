@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>NOIC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
+    <meta name="author" content="Shreethemes" />
+    <meta name="email" content="support@shreethemes.in" />
+    <meta name="website" content="https://shreethemes.in" />
+    <meta name="Version" content="v3.8.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link href="{% static 'css/materialdesignicons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Slider -->               
+    <link rel="stylesheet" href="{% static 'css/tiny-slider.css' %}"/> 
+    <!-- Main Css -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt" />
+    <link href="{% static 'css/colors/default.css' %}" rel="stylesheet" id="color-opt">
+
+</head>
+
+<body>
+    <!-- Loader -->
+    <!-- <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Loader -->
+    
+    <!-- Navbar STart -->
+    <header id="topnav" class="defaultscroll sticky nav-sticky">
+        <div class="container">
+            
+            {% comment %} {% static 'images/login.png' %} {% endcomment %}
+            <!--Login button Start-->
+            <ul class="buy-button list-inline mb-0">
+                <li class="list-inline-item mb-0">
+                    <a href="{% url 'loginpage' %}" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><strong>Log in</strong>
+                    </a>
+                </li>
+            </ul>
+            <!--Login button End-->
+
+            <div id="navigation">
+                <!-- Navigation Menu-->   
+                <ul class="navigation-menu nav-light">
+                    <li><a href="{% url 'landingpage' %}" class="sub-menu-item">Home</a></li>
+                    
+                    {% block content %}
+                    
+    
+    {% endblock %}
+    <!-- Footer Start -->
+    <footer class="footer">    
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-py-60">
+                        <div class="row">
+                            <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2">
+                                <p class="mt-4">Start working with 4-8 that can provide everything you need to generate awareness, drive traffic, connect.</p>
+                                <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
+                                </ul><!--end icon-->
+                            </div><!--end col-->
+                            
+                            <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                                <h5 class="footer-head">Company</h5>
+                                <ul class="list-unstyled footer-list mt-4">
+                                    <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Home </a></li>
+                                    <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> About </a></li>
+                                    <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> FAQ </a></li>
+                                    <li><a href="javascript:void(0)" class="text-foot"><i class="uil uil-angle-right-b me-1"></i> Get Help</a></li>
+                                </ul>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+
+        <div class="footer-py-30 footer-bar">
+            <div class="container text-center">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="text-sm-start">
+                            <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Section 4-8. Designed with <i class="mdi mdi-heart text-danger"></i> by Layton Barney, Tyler Curtis, Liberty McConkie, and Max McGrath.</p>
+                        </div>
+                    </div><!--end col-->
+
+                </div><!--end row-->
+            </div><!--end container-->
+        </div>
+    </footer><!--end footer-->
+    <!-- Footer End -->
+
+    <!-- Back to top -->
+    <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fs-5"><i data-feather="arrow-up" class="fea icon-sm icons align-middle"></i></a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- SLIDER -->
+    <script src="js/tiny-slider.js "></script>
+    <!-- Icons -->
+    <script src="js/feather.min.js"></script>
+    <!-- Switcher -->
+    <script src="js/switcher.js"></script>
+    <!-- Main Js -->
+    <script src="js/plugins.init.js"></script><!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+    <script src="js/app.js"></script><!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+    {% comment %} <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> {% endcomment %}
+</body>
+</html>
