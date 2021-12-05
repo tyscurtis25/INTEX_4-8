@@ -1,6 +1,8 @@
+from typing import Counter
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Drug, Prescribeslink
+from django.db.models import Count
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -18,9 +20,14 @@ def showPrescriberPageView(request) :
 
 def showGovAgencyPageView(request) : 
     data = Drug.objects.all()
+    agg = Prescribeslink.objects.aggregate(Count('id'))
+    
+    sum = Prescribeslink.objects.values("drug").distinct("drug")
 
     context = {
-        'drugs' : data 
+        'drugs' : data, 
+        'aggre': agg,
+        'dis': sum
     }
 
     return render(request, 'NOIC_app/govPortal.html', context)

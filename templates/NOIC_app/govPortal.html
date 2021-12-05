@@ -184,51 +184,23 @@
                             <div class="">
                                 <div class="card shadow border-0 p-4 pb-0 rounded">
                                     <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0 fw-bold">Sales Analytics</h6>
-
-                                        <form class="login-form mt-4" action="{% url 'dataup' %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">NPI Number<span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="npi" class="form-control ps-5" placeholder="NPI" name="NPI" required="">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-        
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Your Email <span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <label for='emp_title'>Enter the title:</label>
-                                                            <select name="drug-dropdown">
-                                                                {% for item in drugs %}
-                                                                    <option>{{ item.name }}</option>
-                                                                {% endfor %}
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-        
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Number of Drug Prescriptions<span class="text-danger">*</span></label>
-                                                        <div class="form-icon position-relative">
-                                                            <input type="password" id="numdrugs" class="form-control ps-5" placeholder="Number of Drug Perscriptions" name="numdrugs" required="">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-                                                
-                                                <div class="col-md-12">
-                                                    <div class="d-grid">
-                                                        <button class="btn btn-primary" type="submit">Register</button>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div><!--end -->
-                                        </form>
+                                        <h6 class="mb-0 fw-bold">Drugs Perscribed Summary</h6>
+                                        <div class="grid-container">    
+                                            <table>
+                                                <tr>
+                                                    <th>Drug Name</th>
+                                                    <th>Drugs total Perscriptions</th>
+                                                    <th>Percent of Total Perscriptions</th>
+                                                </tr>
+                                                {% for items in drugs %}
+                                                <tr>
+                                                    <th> {{items.drug.name}} </th>
+                                                    <th>{{ items.presciber.npi}}</th> 
+                                                    <th></th>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+                                        </div> 
                                         
                                         <!-- this is where we should insert some data-->
                                     </div>
@@ -247,11 +219,11 @@
                                     <div class="col-xl-12 mt-4">
                                         <div class="card rounded shadow border-0 p-4">
                                             <div class="d-flex justify-content-between mb-4">
-                                                <h6 class="mb-0">Monthly Sales Report</h6>
+                                                <h6 class="mb-0">Total Prescriptions</h6>
 
                                                 <div class="text-end">
-                                                    <h5 class="mb-0">2384</h5>
-                                                    <h6 class="text-muted mb-0">September</h6>
+                                                    <h5 class="mb-0">{{ aggre }}</h5>
+                                                    <h6 class="text-muted mb-0">Prescriptions year to date</h6>
                                                 </div>
                                             </div>
                                             <div id="sale-chart"></div>
