@@ -1,76 +1,123 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-</ul><!--end navigation menu-->
-</div><!--end navigation-->
-</div><!--end container-->
-</header><!--end header-->
-<!-- Navbar End -->
- <!-- Hero Start -->
-    <!-- Feature Start -->
+        {% extends 'base.html' %}
+        {% load static %}
+        {% block content %}
+        </ul><!--end navigation menu-->
+        </div><!--end navigation-->
+        </div><!--end container-->
+        </header><!--end header-->
+        <!-- Navbar End -->
+        <!-- Hero Start -->
+        <!-- Feature Start -->
         <div class="container mt-100 mt-60">
-            <div class="row align-items-center">
-                <div class="col-lg-7 col-md-6 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                    <div class="section-title">
-                        <h4 class="title mb-4">Welcome to the <span class="text-primary">Prescriber Portal</span></h4>
-                        <p class="text-muted">Using Landrick to build your site means never worrying about designing another page or cross browser compatibility. Our ever-growing library of components and pre-designed layouts will make your life easier.</p>
-                        <ul class="list-unstyled text-muted">
-                            <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
-                            <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency</li>
-                            <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
-                        </ul>
-                        <a href="javascript:void(0)" class="mt-3 h6 text-primary">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
-                    </div>
-                </div><!--end col-->
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-6 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="section-title">
+                    <h4 class="title mb-4">Welcome to the <span class="text-primary">Prescriber Portal</span></h4>
+                    <p class="text-muted">Using Landrick to build your site means never worrying about designing another page or cross browser compatibility. Our ever-growing library of components and pre-designed layouts will make your life easier.</p>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Digital Marketing Solutions for Tomorrow</li>
+                        <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Our Talented & Experienced Marketing Agency</li>
+                        <li class="mb-1"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>Create your own skin to match your brand</li>
+                    </ul>
+                    <a href="javascript:void(0)" class="mt-3 h6 text-primary">Find Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+                </div>
+            </div><!--end col-->
 
-                <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                    <div class="card rounded border-0 shadow ms-lg-5">
-                        <div class="card-body"><h4 class="text-center">Prescriber Portal</h4>
-                            <div class="content mt-4 pt-2">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Enter prescriber npi : <span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="user" class="fea icon-sm icons"></i>
-                                                    <input type="text" class="form-control ps-5" placeholder="Name" name="name" required="">
-                                                </div>
+            <div class="col-lg-5 col-md-6 order-1 order-md-2">
+                <div class="card rounded border-0 shadow ms-lg-5">
+                    <div class="card-body"><h4 class="text-center">Prescriber Portal</h4>
+                        <div class="content mt-4 pt-2">
+                            <form action="{% url 'dataAdd' %}" method="post">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter prescriber npi : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="name" required="">
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
+                                    </div><!--end col-->
 
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Select Drug Name from Dropdown : <span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                    <input type="email" class="form-control ps-5" placeholder="Email" name="email" required="">
-                                                </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Select Drug Name from Dropdown : <span class="text-danger">*</span></label>
+                                            <div class="">
+                                                <select class="form-icon position-relative" name="drug-dropdown">
+                                                    {% for item in drugs %}
+                                                        <option>{{ item.name }}</option>
+                                                    {% endfor %}
+                                                </select>
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
+                                    </div><!--end col-->
 
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Enter Number of Drug Prescriptions : <span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="key" class="fea icon-sm icons"></i>
-                                                    <input type="password" class="form-control ps-5" placeholder="Password" required="">
-                                                </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Number of Drug Prescriptions : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="key" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="numdrugs">
                                             </div>
-                                        </div><!--end col-->
+                                        </div>
+                                    </div><!--end col-->
 
-                                        <div class="col-lg-12 mt-2 mb-0">
-                                            <div class="d-grid">
-                                                <button class="btn btn-primary">Download</button>
-                                            </div>
-                                        </div><!--end col-->
-                                    </div>
-                                </form>                                    
-                            </div>
+                                    <div class="col-lg-12 mt-2 mb-0">
+                                        <div class="d-grid">
+                                            <button class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div><!--end col-->
+                                </div>
+                            </form>                                    
                         </div>
                     </div>
-                </div><!--end col-->
-            </div><!--end row-->
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
         </div><!--end container-->
-    <!-- Feature End -->
-{% endblock %}
+        <!-- Feature End -->
+        <div class="row">
+            <div class="">
+                <div class="card shadow border-0 p-4 pb-0 rounded">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="mb-0 fw-bold">Drugs Perscribed Summary</h6>
+                        <div class="grid-container">    
+                            <table>
+                                <tr>
+                                    <th>Prescriber Name</th>
+                                    <th></th>
+                                    <th>Gender</th>
+                                    <th>Credentials</th>
+                                    <th>Location</th>
+                                    <th>Speciality</th>
+                                </tr>
+                                {% for items in pre %}
+                                <tr>
+                                    <th>{{ items.prescriber.prescriber.last_name }}
+                                        <select>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            {% comment %} {% for thing in drogas %}
+                                            <option>{{ thing.name }}</option>
+                                            {% endfor %} {% endcomment %}
+                                        </select>
+                                    </th>
+                                    <th>{{ items.prescriber.prescriber.first_name }}</th>
+                                    <th>{{ items.prescriber.prescriber.gender }}</th>
+                                    <th>{{ items.prescriber.credentials }}</th> 
+                                    <th>{{ items.prescriber.state.state_name }}</th>
+                                    <th>{{ items.prescriber.specialty }}</th>
+                                    <th>
+                                     
+                                    </th>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div> 
+                        
+                        <!-- this is where we should insert some data-->
+                    </div>
+                    <div id="dashboard" class="apex-chart"></div>
+                </div>
+            </div><!--end col-->
+        {% endblock %}
