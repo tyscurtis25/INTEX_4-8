@@ -15,6 +15,7 @@ def showLoginPageView(request) :
 
 def showPrescriberPageView(request) :
     data = Drug.objects.all()
+    
     prescribe = Prescribeslink.objects.all()[0:5]
     drugs = Drug.objects.all()[0:5]
 
