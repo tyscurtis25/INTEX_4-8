@@ -15,14 +15,11 @@ def showLoginPageView(request) :
 
 def showPrescriberPageView(request) :
     data = Drug.objects.all()
-    
-    prescribe = Prescribeslink.objects.all()[0:5]
-    drugs = Drug.objects.all()[0:5]
+    prescribe = Prescriber.objects.all()[0:5]
 
     context = {
         'drugs' : data,
-        'pre' : prescribe,
-        'drogas' : drugs
+        'pre' : prescribe
     }
 
     return render(request, 'NOIC_app/prescriberPortal.html', context)
