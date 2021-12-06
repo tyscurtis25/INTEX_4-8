@@ -16,7 +16,15 @@ def showLoginPageView(request) :
     return render(request, 'NOIC_app/login.html')
 
 def showPrescriberPageView(request) :
-    return render(request, 'NOIC_app/prescriberPortal.html')
+    data = Drug.objects.all()
+    prescribe = Prescriber.objects.all()[0:5]
+
+    context = {
+        'drugs' : data,
+        'pre' : prescribe
+    }
+
+    return render(request, 'NOIC_app/prescriberPortal.html', context)
 
 def showGovAgencyPageView(request) : 
     data = Drug.objects.all()
@@ -82,19 +90,24 @@ def signoutPageView(request) :
 
 
 def updateData(request):
-
+    
     if request.method == "POST" :
-        newrecord = Prescribeslink()
-
-        newrecord.prescriber_id = request.POST["npi"]
-        newrecord.drug_id = request.POST["drug-dropdown"]
         num = request.POST["numdrugs"]
+        
+        newrecord = Prescribeslink()
+        for entry in range(1, num) :
+            
+                drugname =  request.POST["drug-dropdown"]
 
+                id = Drug.objects.all()
+                newrecord.prescriber_id = request.POST["npi"]
+                newrecord.drug_id = id
 
-
-
-
+        newrecord.save()
+            
     return HttpResponse("hello")
+
+
     
 
 #tylers going to pass the NPI
