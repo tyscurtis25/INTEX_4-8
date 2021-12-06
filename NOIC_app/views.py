@@ -1,10 +1,12 @@
+from django.db.models.aggregates import Avg, Sum
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Drug, Prescribeslink, Prescriber
+from .models import Drug, Prescribeslink, Prescriber, Person
 
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Count
 
 # Create your views here.
 def showLandingPageView(request) :
@@ -87,7 +89,7 @@ def signoutPageView(request) :
     return redirect('landingpage')
 
 
-def addData(request):
+def updateData(request):
     
     if request.method == "POST" :
         num = request.POST["numdrugs"]
@@ -107,3 +109,52 @@ def addData(request):
 
 
     
+
+#tylers going to pass the NPI
+
+def drugViewPage(request, npi):
+    id = npi
+    
+    data1 = Prescribeslink.objects.filter(prescriber_id = id).distinct('drug').distinct("drug")
+    
+    data2 = Prescriber.objects.filter(npi=id)
+    data3 = Person.objects.filter(person_id__in =  data2.values("prescriber_id"))
+    
+    datacount = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(count_drug = Count('drug'))
+    #avg = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(average_drug = Count('drug')/Sum(Count('drug')))
+
+    
+   
+    
+    # data3 = Person.objects.filter(person_id = data4.prescriber_id)
+    context = {
+        'drugs': data1,
+        'count': datacount,
+        'hello': data3,
+        #
+    }
+    return render(request, 'NOIC_app/drugview.html', context)
+
+
+
+def searchDrugPageView(request):
+    data = Drug.objects.all()[0:100]
+
+    context = {
+        'drug' : data
+    }
+
+
+    return render(request, 'NOIC_app/drugsearch.html', context)
+
+def topTenPageView(request, dName):
+    id = Drug.objects.filter(name=dName).values("drug_id")
+    top = Prescribeslink.objects.filter(drug=id).values('prescriber').annotate(Count('drug'))
+
+    context = {
+        'data' : top 
+
+    }
+
+    return render(request, 'NOIC_app/topten.html', context)
+

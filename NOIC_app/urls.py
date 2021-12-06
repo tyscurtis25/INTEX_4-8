@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView
-from .views import showGetHelpPageView, accountSetUpPageView, postAccountView, signInPageView, addData
+from .views import drugViewPage, searchDrugPageView, showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView
+from .views import showGetHelpPageView, accountSetUpPageView, postAccountView, signInPageView, updateData,topTenPageView
 
 urlpatterns = [
     path("", showLandingPageView, name="landingpage"),
@@ -11,5 +11,8 @@ urlpatterns = [
     path("createaccount/signup/", postAccountView, name="signup"),
     path("login/signedup/", signInPageView, name="signin"),
     path("gov/", showGovAgencyPageView, name="gov"),
-    path("gov/adddata/", addData, name="dataAdd")
+    path("gov/updatedata/", updateData, name="dataup"),
+    path("drugview/<int:npi>/", drugViewPage, name="drug"),
+    path('drugsearch/', searchDrugPageView, name='drugsearch'),
+    path('drugsearch/topten/<str:dName>/', topTenPageView, name='top')
 ]
