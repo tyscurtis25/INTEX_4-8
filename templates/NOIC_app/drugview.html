@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="">
+        <div class="card shadow border-0 p-4 pb-0 rounded">
+            <div class="d-flex justify-content-between">
+          
+                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <ul>
+                {% for item in count %}
+                    {% for items in drugs %} 
+                        {% if item.drug == items.drug_id %}
+                            <li>{{items.drug.name}}</li>
+                        {% endif %}
+                    {% endfor %}
+                    <li> {{item.count_drug}}</li>
+                    {% comment %} {% for thing in average %} 
+                        {% if item.drug == thing.drug %}
+                            <li> {{thing.average_drug}}</li>
+                        {% endif %}
+                    {% endfor %}  {% endcomment %}
+                
+                    
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
