@@ -174,10 +174,13 @@ def addData(request):
     
     if request.method == "POST" :
         new_prescriber = Prescriber()
-        
-        new_prescriber.new_first = request.POST["new_first_name"]
-        new_prescriber.new_last =  request.POST["new_last_name"]
-        new_prescriber.gender =  request.POST["gender"]
+        new_person = Person()
+
+        new_prescriber.npi = request.POST["p_npi"]
+        new_person.new_first = request.POST["new_first_name"]
+        new_person.new_last =  request.POST["new_last_name"]
+        new_person.gender =  request.POST["gender"]
+        new_prescriber.op_pres = request.POST["opioid_pres"]
         new_prescriber.credentials =  request.POST["credentials"]
         new_prescriber.location =  request.POST["location"]
         new_prescriber.specialty =  request.POST["specialty"]
