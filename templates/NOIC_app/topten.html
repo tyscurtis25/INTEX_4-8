@@ -17,8 +17,12 @@
                     </tr>
                     {% for items in data %}
                         <tr>
-                            <td>{{ items.prescriber.prescriber.first_name }}</td>
-                            <td>{{ items.drug__count }}</td>
+                            {% for item in name %}
+                                {% if items.prescriber == item.npi %}
+                                    <td>{{ item.prescriber.first_name }} {{item.prescriber.last_name}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            <td>{{ items.qty }}</td>
                             
                         </tr>
                     {% endfor %}

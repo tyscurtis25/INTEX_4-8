@@ -14,5 +14,5 @@ urlpatterns = [
     path("gov/updatedata/", updateData, name="dataup"),
     path("drugview/<int:npi>/", drugViewPage, name="drug"),
     path('drugsearch/', searchDrugPageView, name='drugsearch'),
-    path('drugsearch/topten/<str:dName>/', topTenPageView, name='top')
+    path('drugsearch/topten/<str:dName>/', topTenPageView, name='top'),
 ]
