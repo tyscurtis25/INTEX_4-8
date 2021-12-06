@@ -17,8 +17,9 @@
                     </tr>
                     {% for items in data %}
                         <tr>
-                            {% for item in name %}
-                                {% if items.prescriber == item.npi %}
+                            <td> {{ items.npi.prescriber.first_name }}</td>
+                            {% for item in names %}
+                                {% if items.npi == item.npi %}
                                     <td>{{ item.prescriber.first_name }} {{item.prescriber.last_name}}</td>
                                 {% endif %}
                             {% endfor %}

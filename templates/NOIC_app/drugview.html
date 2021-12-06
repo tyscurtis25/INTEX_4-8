@@ -17,12 +17,11 @@
                         {% endif %}
                     {% endfor %}
                     <li> {{item.count_drug}}</li>
-                    {% comment %} {% for thing in average %} 
-                        {% if item.drug == thing.drug %}
-                            <li> {{thing.average_drug}}</li>
-                        {% endif %}
-                    {% endfor %}  {% endcomment %}
-                
+                    {% for thing in average %} 
+                        {% if item.drug == thing.0 %}  
+                            <li> {{ thing.1 }}</li>
+                        {% endif %} 
+                    {% endfor %}   
                     
                 {% endfor %}
                 </ul>
