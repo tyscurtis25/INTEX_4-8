@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="">
+        <div class="card shadow border-0 p-4 pb-0 rounded">
+            <div class="d-flex justify-content-between">
+          
+                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <table>
+                    <tr>
+                        <th>DrugName</th>
+                        <th>IsOpioid</th>
+                        <th>See Top 10 Prescribers</th>
+                    </tr>
+                    {% for items in drug %}
+                        <tr class='clickable-row' data-href='url://'>
+                            <td>{{ items.name }}</td>
+                            <td>{{ items.is_opioid }}</td>
+                            <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                    
+            
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

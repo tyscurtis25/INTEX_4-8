@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="">
+        <div class="card shadow border-0 p-4 pb-0 rounded">
+            <div class="d-flex justify-content-between">
+          
+                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <table>
+                    <tr>
+                        <th>Top 10 Prescribers</th>
+                        <th>Number Prescribed</th>
+                
+                    </tr>
+                    {% for items in data %}
+                        <tr>
+                            {% for item in name %}
+                                {% if items.prescriber == item.npi %}
+                                    <td>{{ item.prescriber.first_name }} {{item.prescriber.last_name}}</td>
+                                {% endif %}
+                            {% endfor %}
+                            <td>{{ items.qty }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                </table>
+                    
+            
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}
