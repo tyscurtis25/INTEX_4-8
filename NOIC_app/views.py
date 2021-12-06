@@ -106,4 +106,8 @@ def addData(request):
     return HttpResponse("hello")
 
 
+def choosePortalPageView(request) :
+    return render(request, 'NOIC_app/choosePortal.html')
+
+
     

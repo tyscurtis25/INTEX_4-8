@@ -176,12 +176,12 @@
                         </tr>
                         {% for items in pre %}
                         <tr>
-                            <th><a href="#">{{ items.prescriber.last_name }}</a></th>
-                            <th><a href="#">{{ items.prescriber.first_name }}</a></th>
-                            <th><a href="#">{{ items.prescriber.gender }}</a></th>
-                            <th><a href="#">{{ items.credentials }}</a></th> 
-                            <th><a href="#">{{ items.state.state_name }}</a></th>
-                            <th><a href="#">{{ items.specialty }}</a></th>
+                            <th><a href="{% url 'drug' %}">{{ items.prescriber.last_name }}</a></th>
+                            <th><a href="{% url 'drug' %}">{{ items.prescriber.first_name }}</a></th>
+                            <th><a href="{% url 'drug' %}">{{ items.prescriber.gender }}</a></th>
+                            <th><a href="{% url 'drug' %}">{{ items.credentials }}</a></th> 
+                            <th><a href="{% url 'drug' %}">{{ items.state.state_name }}</a></th>
+                            <th><a href="{% url 'drug' %}">{{ items.specialty }}</a></th>
                         </tr>
                         {% endfor %}
                     </table>
