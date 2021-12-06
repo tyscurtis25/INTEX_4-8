@@ -162,3 +162,21 @@ def topTenPageView(request, dName):
 
     return render(request, 'NOIC_app/topten.html', context)
 
+def addData(request):
+    
+    if request.method == "POST" :
+        num = request.POST["numdrugs"]
+        
+        newrecord = Prescribeslink()
+        for entry in range(1, num) :
+            
+                drugname =  request.POST["drug-dropdown"]
+
+                id = Drug.objects.all()
+                newrecord.prescriber_id = request.POST["npi"]
+                newrecord.drug_id = id
+
+        newrecord.save()
+            
+    return HttpResponse("hello")   
+
