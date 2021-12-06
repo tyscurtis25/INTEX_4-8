@@ -17,11 +17,14 @@ def showLoginPageView(request) :
 
 def showPrescriberPageView(request) :
     data = Drug.objects.all()
-    prescribe = Prescribeslink.objects.all()[0:5]
-
+    prescribe = Prescriber.objects.all()[0:10]
+    credentials = PrescriberCredential.objects.all()[0:10]
+    # print(prescribe.query)
+    # print(credentials.query)
     context = {
         'drugs' : data,
-        'pre' : prescribe
+        'pre' : prescribe,
+        'cred' : credentials
     }
 
     return render(request, 'NOIC_app/prescriberPortal.html', context)
@@ -97,6 +100,7 @@ def updateData(request):
         newrecord = Prescribeslink()
         for entry in range(1, num) :
             
+                pres_name = request.POST["name"]
                 drugname =  request.POST["drug-dropdown"]
 
                 id = Drug.objects.all()
@@ -104,8 +108,6 @@ def updateData(request):
                 newrecord.drug_id = id
 
         newrecord.save()
-            
-    return HttpResponse("hello")
 
 
 def choosePortalPageView(request) :
@@ -119,12 +121,12 @@ def choosePortalPageView(request) :
 def drugViewPage(request, npi):
     id = npi
     
-    data1 = Prescribeslink.objects.filter(prescriber_id = id).distinct('drug').distinct("drug")
+    data1 = Prescribeslink.objects.filter(npi = id).distinct('drug').distinct("drug")
     
     data2 = Prescriber.objects.filter(npi=id)
-    data3 = Person.objects.filter(person_id__in =  data2.values("prescriber_id"))
+    data3 = Person.objects.filter(person_id__in =  data2.values("npi"))
     
-    datacount = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(count_drug = Count('drug'))
+    datacount = Prescribeslink.objects.filter(npi = id).values("drug").annotate(count_drug = Count('drug'))
     #avg = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(average_drug = Count('drug')/Sum(Count('drug')))
 
     
@@ -166,21 +168,27 @@ def topTenPageView(request, dName):
 
     return render(request, 'NOIC_app/topten.html', context)
 
+#CRUD app
+
 def addData(request):
     
     if request.method == "POST" :
-        num = request.POST["numdrugs"]
+        new_prescriber = Prescriber()
         
-        newrecord = Prescribeslink()
-        for entry in range(1, num) :
+        new_prescriber.new_first = request.POST["new_first_name"]
+        new_prescriber.new_last =  request.POST["new_last_name"]
+        new_prescriber.gender =  request.POST["gender"]
+        new_prescriber.credentials =  request.POST["credentials"]
+        new_prescriber.location =  request.POST["location"]
+        new_prescriber.specialty =  request.POST["specialty"]
+
+        new_prescriber.save()
             
-                drugname =  request.POST["drug-dropdown"]
+    return showPrescriberPageView(request)   
 
-                id = Drug.objects.all()
-                newrecord.prescriber_id = request.POST["npi"]
-                newrecord.drug_id = id
+def deletePrescriber(request, npi) :
+    data = Prescriber.objects.get(id = npi)
 
-        newrecord.save()
-            
-    return HttpResponse("hello")   
+    data.delete()
 
+    return showPrescriberPageView(request)
