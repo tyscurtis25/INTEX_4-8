@@ -1,3 +1,6 @@
+import decimal
+from typing import cast
+from django.db.models.functions import Round
 from django.db.models.aggregates import Avg, Sum
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -7,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count
+import psycopg2 as psy
 
 # Create your views here.
 def showLandingPageView(request) :
@@ -31,9 +35,14 @@ def showPrescriberPageView(request) :
 
 def showGovAgencyPageView(request) : 
     data = Drug.objects.all()
+    agg = Prescribeslink.objects.aggregate(Count('id'))
+    
+    sum = Prescribeslink.objects.values("drug").distinct("drug")
 
     context = {
-        'drugs' : data 
+        'drugs' : data, 
+        'aggre': agg,
+        'dis': sum
     }
 
     return render(request, 'NOIC_app/govPortal.html', context)
@@ -127,16 +136,23 @@ def drugViewPage(request, npi):
     data3 = Person.objects.filter(person_id__in =  data2.values("npi"))
     
     datacount = Prescribeslink.objects.filter(npi = id).values("drug").annotate(count_drug = Count('drug'))
-    #avg = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(average_drug = Count('drug')/Sum(Count('drug')))
+    # avg = Prescribeslink.objects.filter(npi=id).values('drug').annotate(average = Count("drug")/ Count('npi', distinct= True))
+    conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    cur = conn.cursor()
+    
+    
+    avg = cur.execute("""select drug_id, Round(cast(count(drug_id)as decimal)/cast(count(distinct npi)as decimal), 2) as avg_drug
+from prescribeslink
+group by drug_id;""")
+    x = cur.fetchall()
+    print(x)
+    print("hi")
 
-    
-   
-    
-    # data3 = Person.objects.filter(person_id = data4.prescriber_id)
     context = {
         'drugs': data1,
         'count': datacount,
         'hello': data3,
+        'average': x,
         
     }
     return render(request, 'NOIC_app/drugview.html', context)
@@ -150,16 +166,16 @@ def searchDrugPageView(request):
         'drug' : data
     }
 
-
     return render(request, 'NOIC_app/drugsearch.html', context)
 
 def topTenPageView(request, dName):
     print(dName)
     id = Drug.objects.filter(name=dName).values("drug_id")
-    top = Prescribeslink.objects.filter(drug__in=id).values('prescriber').annotate(qty=Count('drug')).order_by('qty').reverse()[0:10]
-    name = Prescriber.objects.filter(npi__in=top)
+    top = Prescribeslink.objects.filter(drug__in=id).values('npi').annotate(qty=Count('drug')).order_by('qty').reverse()[0:10]
+    name = Prescriber.objects.filter(npi__in=top.values("npi"))
+    print(name.query)
+    print(top)
     
-
     context = {
         'data' : top,
         'names' : name,
