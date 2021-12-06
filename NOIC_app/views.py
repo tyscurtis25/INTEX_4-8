@@ -135,7 +135,7 @@ def drugViewPage(request, npi):
         'drugs': data1,
         'count': datacount,
         'hello': data3,
-        #
+        
     }
     return render(request, 'NOIC_app/drugview.html', context)
 
@@ -152,11 +152,15 @@ def searchDrugPageView(request):
     return render(request, 'NOIC_app/drugsearch.html', context)
 
 def topTenPageView(request, dName):
+    print(dName)
     id = Drug.objects.filter(name=dName).values("drug_id")
-    top = Prescribeslink.objects.filter(drug=id).values('prescriber').annotate(Count('drug'))
+    top = Prescribeslink.objects.filter(drug__in=id).values('prescriber').annotate(qty=Count('drug')).order_by('qty').reverse()[0:10]
+    name = Prescriber.objects.filter(npi__in=top)
+    
 
     context = {
-        'data' : top 
+        'data' : top,
+        'names' : name,
 
     }
 

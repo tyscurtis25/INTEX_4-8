@@ -16,5 +16,5 @@ urlpatterns = [
     path('drugsearch/', searchDrugPageView, name='drugsearch'),
     path('drugsearch/topten/<str:dName>/', topTenPageView, name='top'),
     path('choosePortal/', choosePortalPageView, name='chooseP'),
-    path("gov/adddata/", addData, name="dataAdd")
+    path("gov/adddata/", addData, name="dataAdd"),
 ]

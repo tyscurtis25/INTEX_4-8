@@ -19,7 +19,7 @@
                         <tr class='clickable-row' data-href='url://'>
                             <td>{{ items.name }}</td>
                             <td>{{ items.is_opioid }}</td>
-                            <td><button type="button"><a href="{% url 'top' 'dName=items.name' %}">Click Me!</a></button></td>
+                            <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
                         </tr>
                     {% endfor %}
                 </table>
