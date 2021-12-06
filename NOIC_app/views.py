@@ -1,7 +1,7 @@
 from django.db.models.aggregates import Avg, Sum
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Drug, Prescribeslink, Prescriber, Person
+from .models import Drug, Prescribeslink, Prescriber, Person, PrescriberCredential, Credential
 
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -17,7 +17,7 @@ def showLoginPageView(request) :
 
 def showPrescriberPageView(request) :
     data = Drug.objects.all()
-    prescribe = Prescriber.objects.all()[0:5]
+    prescribe = Prescribeslink.objects.all()[0:5]
 
     context = {
         'drugs' : data,
