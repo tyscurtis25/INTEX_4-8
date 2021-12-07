@@ -18,6 +18,94 @@ def showLoginPageView(request) :
 
 def showPrescriberPageView(request) :
     
+    # data = Drug.objects.all()
+    # prescribe = Prescriber.objects.all()[0:10]
+    # credentials = PrescriberCredential.objects.all()[0:10]
+    # # print(prescribe.query)
+    # # print(credentials.query)
+
+    # if request.method == "POST": 
+
+    #     first_name1 = request.POST['fname']
+    #     last_name1 = request.POST['lname']
+    #     gend = request.POST['gender1']
+    #     state1 = request.POST['state1']
+    #     creds = request.POST['creds']
+    #     specialty1 = request.POST['specialty1']
+
+    #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    #     cur = conn.cursor()
+
+
+        a = 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+
+    #     a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+
+
+
+        
+    #     if first_name1 != '' :
+    #         a += ' first_name like ' + "'" + first_name1 + "'"
+
+    #     if last_name1 != '' and first_name1 != '':
+    #         a += ' and last_name like ' + "'" + last_name1 + "'" 
+    #     elif last_name1 != "" :
+    #         a += ' last_name like ' + "'" + last_name1 + "'" 
+        
+    #     if gend != '' and (last_name1 != '' or first_name1 != '' ):
+    #         a += ' and gender like ' + "'" + gend + "'" 
+    #     elif gend != '' :
+    #         a += ' gender like ' + "'" + gend + "'" 
+        
+    #     if state1 != '' and (gend != '' or last_name1 != '' or first_name1 != '') :
+    #         a += ' and state like ' + "'" + state1 + "'" 
+    #     elif state1 != '' :
+    #         a += ' state like ' + "'" + state1 + "'" 
+        
+    #     if creds != '' and (state1 != '' or gend != '' or last_name1 != '' or first_name1 != '' ):
+    #         a += ' and  credentials like ' + "'"  + creds + "'" 
+    #     elif creds != '' :
+    #         a += '  credentials like ' + "'"  + creds + "'" 
+        
+    #     if specialty1 != '' and (creds != '' or state1 != '' or gend != '' or last_name1 != '' or first_name1 != '') :
+    #         a += ' and specialty like ' + "'" + specialty1 + "'" 
+    #     elif specialty1 != '' :
+    #         a += ' specialty like ' + "'" + specialty1 + "'" 
+
+    #     print(a) 
+
+    #     cur.execute(a)
+    #     x = cur.fetchall()
+    #     cur.close()
+    #     conn.close()
+
+
+    else :
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi Order by prescriber_id desc LIMIT 30"""
+        cur.execute(x)
+        x = cur.fetchall()
+=======
+    # else :
+    #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    #     cur = conn.cursor()
+    #     x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi LIMIT 30"""
+    #     cur.execute(x)
+    #     x = cur.fetchall()
+
+    #     cur.close()
+    #     conn.close()
+
+    # context = {
+    #     'drugs' : data,
+    #     'pre' : prescribe,
+    #     'cred' : credentials,
+    #     'dynamic': x,
+    # }
+
+
+
     return render(request, 'NOIC_app/prescriberPortal.html')
 
 def showGovAgencyPageView(request) : 
@@ -195,25 +283,76 @@ def drugViewPage(request, npi):
     datacount = Prescribeslink.objects.filter(npi = id).values("drug").annotate(count_drug = Count('drug'))
     #avg = Prescribeslink.objects.filter(prescriber_id = id).values("drug").annotate(average_drug = Count('drug')/Sum(Count('drug')))
 
-    
+    conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    cur = conn.cursor()
    
     
+    cur.execute("""select drug_id, Round(cast(count(drug_id)as decimal)/cast(count(distinct npi)as decimal), 2) as avg_drug
+    from prescribeslink
+    group by drug_id;""")
+    x = cur.fetchall()
+    print(x)
+    print("hi")
+
     # data3 = Person.objects.filter(person_id = data4.prescriber_id)
     context = {
-        'drugs': data1,
+        'drugs': data1, 
         'count': datacount,
         'hello': data3,
-        
+        'average': x, 
     }
+
+    cur.close()
+    conn.close()
+
     return render(request, 'NOIC_app/drugview.html', context)
 
 
 
 def searchDrugPageView(request):
-    data = Drug.objects.all()[0:100]
+    data = Drug.objects.all()
+
+    if request.method == "POST" :
+
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        drugname = request.POST['dname']
+        isopioid = request.POST['is_opioid']
+
+        sql = "select * from drug"
+
+        if drugname != "" :
+            sql += " where name like " + "'" + drugname + "'"
+        
+        if isopioid != "" and drugname != "" :
+            sql += " and is_opioid=" + isopioid
+        elif isopioid != "":
+            sql += " where is_opioid=" + isopioid
+        
+        print(sql)
+
+        cur.execute(sql)
+        x = cur.fetchall()
+        print(x)
+
+        cur.close()
+        conn.close()
+
+    else:
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        sql = """select * from drug"""
+
+        cur.execute(sql)
+        x = cur.fetchall()
+
+        cur.close()
+        conn.close()
 
     context = {
-        'drug' : data
+        'drug' : x,
     }
 
 
@@ -222,8 +361,11 @@ def searchDrugPageView(request):
 def topTenPageView(request, dName):
     print(dName)
     id = Drug.objects.filter(name=dName).values("drug_id")
-    top = Prescribeslink.objects.filter(drug__in=id).values('prescriber').annotate(qty=Count('drug')).order_by('qty').reverse()[0:10]
-    name = Prescriber.objects.filter(npi__in=top)
+    top = Prescribeslink.objects.filter(drug__in=id).values('npi').annotate(qty=Count('drug')).order_by('qty').reverse()[0:10]
+    name = Prescriber.objects.filter(npi__npi=top)
+
+    
+    print(name.query)
     
 
     context = {
@@ -277,11 +419,20 @@ def deletePrescriber(request, npi) :
 
     data.delete()
 
+    return showPrescriberPageView(request)
+
+def updatePrescriberPageView(request):
+
+
+    return render(request)
+
     return render(request, 'NOIC_app/successfulAdd.html')
 
 
 def successfulAddView(request) :
     return render(request, 'NOIC_app/successfulAdd.html')
 
+
 def updatePrescriberPageView(request) :
     return render(request, "NOIC_app/updatePre.html")
+
