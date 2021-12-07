@@ -16,8 +16,11 @@
                                 <div class="mb-3">
                                     <label class="form-label">Search by Drug Name : </label>
                                     <div class="form-icon position-relative">
-                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                        <input type="text" id="dname" class="form-control ps-5" name="dname">
+                                        <select class="form-icon position-relative" name="dname">
+                                            {% for item in drug %}
+                                            <option>{{ item.1 }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div><!--end col-->
@@ -64,7 +67,7 @@
                         <tr class='clickable-row' data-href='url://'>
                             <td>{{ items.1 }}</td>
                             <td>{{ items.2 }}</td>
-                            <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
+                            <td><button type="button"><a href="{% url 'top' dName=items.1 %}">Click Me!</a></button></td>
                         </tr>
                     {% endfor %}
                 </table>

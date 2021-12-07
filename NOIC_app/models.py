@@ -76,6 +76,9 @@ class Credential(models.Model):
     class Meta:
         managed = False
         db_table = 'credential'
+    
+    def __str__(self):
+        return (self.name)
 
 
 class DjangoAdminLog(models.Model):
@@ -132,6 +135,9 @@ class Drug(models.Model):
         managed = False
         db_table = 'drug'
 
+    def __str__(self):
+        return (self.name)
+
 
 class Governmentofficial(models.Model):
     official = models.OneToOneField('Person', models.DO_NOTHING, primary_key=True)
@@ -153,6 +159,9 @@ class Patient(models.Model):
         managed = False
         db_table = 'patient'
 
+    def __str__(self):
+        return (self.patient)
+
 
 class Person(models.Model):
     person_id = models.IntegerField(primary_key=True)
@@ -166,6 +175,9 @@ class Person(models.Model):
         managed = False
         db_table = 'person'
 
+    def __str__(self):
+        return (self.first_name + ' ' + self.last_name)
+
 
 class Prescriber(models.Model):
     prescriber = models.OneToOneField(Person, models.DO_NOTHING, primary_key=True)
@@ -178,6 +190,8 @@ class Prescriber(models.Model):
         managed = False
         db_table = 'prescriber'
 
+    def __str__(self):
+        return (self.prescriber)
 
 class PrescriberCredential(models.Model):
     npi = models.OneToOneField(Prescriber, models.DO_NOTHING, db_column='npi', primary_key=True)
@@ -210,3 +224,6 @@ class State(models.Model):
     class Meta:
         managed = False
         db_table = 'state'
+
+    def __str__(self):
+        return (self.state_name)
