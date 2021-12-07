@@ -9,7 +9,7 @@ from .models import Drug, Prescribeslink, Prescriber, Person, PrescriberCredenti
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Count
+from django.db.models import Count, query
 import psycopg2 as psy
 
 # Create your views here.
@@ -25,10 +25,68 @@ def showPrescriberPageView(request) :
     credentials = PrescriberCredential.objects.all()[0:10]
     # print(prescribe.query)
     # print(credentials.query)
+
+    if request.method == "POST": 
+
+        first_name = request.POST['fname']
+        last_name = request.POST['lname']
+        gend = request.POST['gender']
+        state = request.POST['state']
+        creds = request.POST['creds']
+        specialty = request.POST['specialty']
+
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+
+
+        
+        if first_name != '' :
+            a += ' first_name like ' + "'" + first_name + "'"
+
+        if last_name != '' and first_name != '':
+            a += ' and last_name like ' + "'" + last_name + "'" 
+        elif last_name != "" :
+            a += ' last_name like ' + "'" + last_name + "'" 
+        
+        if gend != '' and (last_name != '' or first_name != '' ):
+            a += ' and gender like ' + "'" + gend + "'" 
+        elif gend != '' :
+            a += ' gender like ' + "'" + gend + "'" 
+        
+        if state != '' and (gend != '' or last_name != '' or first_name != '') :
+            a += ' and state like ' + "'" + state + "'" 
+        elif state != '' :
+            a += ' state like ' + "'" + state + "'" 
+        
+        if creds != '' and (state != '' or gend != '' or last_name != '' or first_name != '' ):
+            a += ' and  credentials like ' + "'"  + creds + "'" 
+        elif creds != '' :
+            a += '  credentials like ' + "'"  + creds + "'" 
+        
+        if specialty != '' and (creds != '' or state != '' or gend != '' or last_name != '' or first_name != '') :
+            a += ' and specialty like ' + "'" + specialty + "'" 
+        elif specialty != '' :
+            a += ' specialty like ' + "'" + specialty + "'" 
+
+        print(a) 
+
+        cur.execute(a)
+        x = cur.fetchall()
+        print(x)
+    else :
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi LIMIT 30"""
+        cur.execute(x)
+        x = cur.fetchall()
+
     context = {
         'drugs' : data,
         'pre' : prescribe,
-        'cred' : credentials
+        'cred' : credentials,
+        'dynamic': x,
     }
 
     return render(request, 'NOIC_app/prescriberPortal.html', context)
@@ -184,7 +242,7 @@ def topTenPageView(request, dName):
 
     return render(request, 'NOIC_app/topten.html', context)
 
-#CRUD app
+#CRUD appj
 
 def addData(request):
     
