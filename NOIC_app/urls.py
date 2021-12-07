@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import drugViewPage, searchDrugPageView, showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView, successfulAddView, updatePrescriberInfo
 from .views import showGetHelpPageView, accountSetUpPageView, postAccountView, signInPageView, updateData,topTenPageView, choosePortalPageView, addData
-from .views import updatePrescriberPageView, updatePrescriberInfo
+from .views import updatePrescriberPageView, updatePrescriberInfo, successfulUpView
 
 urlpatterns = [
     path("", showLandingPageView, name="landingpage"),
