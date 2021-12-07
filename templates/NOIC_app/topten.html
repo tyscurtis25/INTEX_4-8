@@ -8,7 +8,7 @@
         <div class="card shadow border-0 p-4 pb-0 rounded">
             <div class="d-flex justify-content-between">
           
-                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <h6 class="mb-0 fw-bold">{% for persons in dname %} {{ persons }} {%endfor%}</h6>  
                 <table>
                     <tr>
                         <th>Top 10 Prescribers</th>
@@ -19,8 +19,12 @@
                         <tr>
                             <td> {{ items.npi.prescriber.first_name }}</td>
                             {% for item in names %}
-                                {% if items.npi == item.npi %}
-                                    <td>{{ item.prescriber.first_name }} {{item.prescriber.last_name}}</td>
+                                {% if items.npi == item.0 %}
+                                    <td>{{ item.1 }} </td>
+                                    <td>{{item.2}} </td>
+                                    <td>{{ item.3 }}</td>
+                                    <td> {{ item.4 }}</td>
+                                    <td> {{ item.5 }}</td>
                                 {% endif %}
                             {% endfor %}
                             <td>{{ items.qty }}</td>

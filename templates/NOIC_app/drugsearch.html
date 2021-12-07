@@ -3,70 +3,76 @@
 {% load static %}
 
 {% block content %}
-                </ul><!--end navigation menu-->
-            </div><!--end navigation-->
-        </div><!--end container-->
-    </header><!--end header-->
-    <!-- Navbar End -->
-    <!-- Hero Start -->
-    <!-- Feature Start --><br><br><br><section>
+<div class="row">
     <div class="col-lg-5 col-md-6 order-1 order-md-2">
-        <div class="grid-container">
-            <div class="d-flex justify-content">
-                <div class="row">
-                    <div class="">
-                        <div class="card shadow border-0 p-4 pb-0 rounded">
-                            <div class="d-flex justify-content-between">
-          
-                                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6> 
-                                <div style="height:700px; overflow:auto;box-shadow: 0 0 3px  !important;"> 
-                                    <table>
-                                        <style>
-                                            table {
-                                                
-                                                table-layout: fixed;
-                                                width: 200px;
-                                                vertical-align: middle;
-                                                text-align: center;
-                                                
-                                            }
-                                            
-                                            th,
-                                            td {
-                                                
-                                                width: 100px;
-                                                overflow: hidden;
-                                                border: 1px rgba(60, 72, 88, 0.15);
-                                                padding: 5px;
-                                                font-size: 14px;
-                                            }
-                                            td + td, th + th {
-                                                border-left: 1px solid #999;
-                                            }
-                                    
-                                            th, tr td {
-                                                border-bottom: 1px solid #999;
-                                            }
+        <div class="card rounded border-0 shadow ms-lg-5">
+            <div class="card-body"><h4 class="text-center">Search Details View</h4>
+                <div class="content mt-4 pt-2">
 
-                                        </style>
-                                        <tr>
-                                            <th style="font-family: 'Libre Baskerville', serif;">DrugName</th>
-                                            <th style="font-family: 'Libre Baskerville', serif;">IsOpioid</th>
-                                            <th style="font-family: 'Libre Baskerville', serif;">See Top 10 Prescribers</th>
-                                        </tr>
-                                        {% for items in drug %}
-                                            <tr class='clickable-row' data-href='url://'>
-                                                <td>{{ items.name }}</td>
-                                                <td>{{ items.is_opioid }}</td>
-                                                <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
-                                            </tr>
-                                        {% endfor %}
-                                    </table>
+                    <form action="{% url 'drugsearch' %}" method="post" >
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Search by Drug Name : </label>
+                                    <div class="form-icon position-relative">
+                                        <select class="form-icon position-relative" name="dname">
+                                            {% for item in drug %}
+                                            <option>{{ item.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label"> Is Opioid? : </label>
+                                    <div class="">
+                                        <select class="form-icon position-relative" name="is_opioid">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-lg-12 mt-2 mb-0">
+                                <div class="d-grid">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div><!--end col-->
                         </div>
-                    </div>
+                    </form>
+                    
+                
                 </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="">
+        <div class="card shadow border-0 p-4 pb-0 rounded">
+            <div class="d-flex justify-content-between">
+          
+                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <table>
+                    <tr>
+                        <th>DrugName</th>
+                        <th>IsOpioid</th>
+                        <th>See Top 10 Prescribers</th>
+                    </tr>
+                    {% for items in drug %}
+                        <tr class='clickable-row' data-href='url://'>
+                            <td>{{ items.1 }}</td>
+                            <td>{{ items.2 }}</td>
+                            <td><button type="button"><a href="{% url 'top' dName=items.1 %}">Click Me!</a></button></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                    
+            
             </div>
         </div>
     </div>
