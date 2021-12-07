@@ -37,7 +37,7 @@ def showPrescriberPageView(request) :
     #     cur = conn.cursor()
 
 
-        a = 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+        # a = 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
 
     #     a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
 
@@ -80,13 +80,13 @@ def showPrescriberPageView(request) :
     #     conn.close()
 
 
-    else :
-        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
-        cur = conn.cursor()
-        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi Order by prescriber_id desc LIMIT 30"""
-        cur.execute(x)
-        x = cur.fetchall()
-=======
+    # else :
+    #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    #     cur = conn.cursor()
+    #     x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi Order by prescriber_id desc LIMIT 30"""
+    #     cur.execute(x)
+    #     x = cur.fetchall()
+
     # else :
     #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
     #     cur = conn.cursor()
