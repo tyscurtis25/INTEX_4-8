@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+</ul><!--end navigation menu-->
+</div><!--end navigation-->
+</div><!--end container-->
+</header><!--end header-->
+<!-- Navbar End -->
+<!-- Hero Start -->
+<!-- Feature Start -->
+<div class="row">
+    <div class="col-lg-5 col-md-6 order-1 order-md-2">
+        <div class="card rounded border-0 shadow ms-lg-5">
+            <div class="card-body"><h4 class="text-center">Update Prescriber Information</h4>
+                <div class="content mt-4 pt-2">
+
+                    <form action="{% url 'updarecord' %}" method="post" >
+                        
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter Prescriber NPI : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="npi" class="form-control ps-5" name="npi">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter new first Name:</label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="fname" class="form-control ps-5" name="fname">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Last Name : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="lname" class="form-control ps-5" name="lname">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Email : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="email" class="form-control ps-5" name="email">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Phone : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="phone" class="form-control ps-5" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Gender : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="gender1" class="form-control ps-5" name="gender1">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Credentials : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="creds" class="form-control ps-5" name="creds">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New State : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="state1" class="form-control ps-5" name="state1">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Still Opioid Prescriber : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                        <input type="text" id="opioid" class="form-control ps-5" name="opioid">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Enter New Specialty : </label>
+                                    <div class="form-icon position-relative">
+                                        <i data-feather="key" class="fea icon-sm icons"></i>
+                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty1">
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-12 mt-2 mb-0">
+                                <div class="d-grid">
+                                    <button class="btn btn-primary">Update Records</button>
+                                </div>
+                            </div><!--end col-->
+                        </div>
+                    </form>
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+{% endblock %}
