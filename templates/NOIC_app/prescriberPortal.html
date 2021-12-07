@@ -86,14 +86,16 @@
                         <div class="card rounded border-0 shadow ms-lg-5">
                             <div class="card-body"><h4 class="text-center">Filter Details View</h4>
                                 <div class="content mt-4 pt-2">
-                                    <form action="" method="post">
+
+                                    <form action="{% url 'prescriber' %}" method="post" >
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Filter by Last Name : </label>
+                                                    <label class="form-label">Filter by First Name : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="name">
+                                                        <input type="text" id="fname" class="form-control ps-5" name="fname">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -103,7 +105,7 @@
                                                     <label class="form-label">Filter by Last Name : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="name">
+                                                        <input type="text" id="lname" class="form-control ps-5" name="lname">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -113,7 +115,7 @@
                                                     <label class="form-label">Filter by Gender : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="name">
+                                                        <input type="text" id="gender" class="form-control ps-5" name="gender">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -123,7 +125,7 @@
                                                     <label class="form-label">Filter by Credentials : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="name">
+                                                        <input type="text" id="creds" class="form-control ps-5" name="creds">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -133,7 +135,7 @@
                                                     <label class="form-label">Filter by Location : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="name">
+                                                        <input type="text" id="state" class="form-control ps-5" name="state">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -143,7 +145,7 @@
                                                     <label class="form-label">Filter by Speciality : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="key" class="fea icon-sm icons"></i>
-                                                        <input type="text" class="form-control ps-5" name="numdrugs">
+                                                        <input type="text" id="specialty" class="form-control ps-5" name="specialty">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -154,7 +156,9 @@
                                                 </div>
                                             </div><!--end col-->
                                         </div>
-                                    </form>                                    
+                                    </form>
+                                    
+                                    
                                 </div>
                             </div>
                             
@@ -176,21 +180,15 @@
                                                 <th>Location</th>
                                                 <th>Specialty</th>
                                             </tr>
-                                            {% for items in pre %}
+                                            {% for items in dynamic %}
                                             <tr>
-                                                <th><a href="{% url 'drug' npi=items.npi %}">{{ items.npi }}</a></th>
-                                                <th>{{ items.prescriber.last_name }}</th>
-                                                <th>{{ items.prescriber.first_name }}</th>
-                                                <th>{{ items.prescriber.gender }}</th>
-                                                <th>
-                                                {% for person in cred %} 
-                                                    {% if person.npi == items.npi %}
-                                                        <li>{{ person.credentials }}</li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                </th> 
-                                                <th>{{ items.state.state_name }}</th>
-                                                <th>{{ items.specialty }}</th>
+                                                <th><a href="{% url 'drug' npi=items.1 %}">{{items.1}}</a></th>
+                                                <th>{{ items.6 }}</th>
+                                                <th>{{ items.7 }}</th>
+                                                <th>{{ items.10 }}</th>
+                                                <th>{{ items.12 }}</th>
+                                                <th>{{ items.4 }}</th>
+                                                <th>{{ items.2 }}</th> 
                                             </tr>
                                             {% endfor %}
                                         </table>
