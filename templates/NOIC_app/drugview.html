@@ -16,7 +16,7 @@
         <div class="card shadow border-0 p-4 pb-0 rounded">
             <div class="d-flex justify-content-between">
           
-                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                <h6 class="mb-0 fw-bold">{% for persons in name %} {{ persons.prescriber.first_name }} {%endfor%}</h6>  
                 <ul>
                 {% for item in count %}
                     {% for items in drugs %} 
@@ -37,11 +37,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
-
-<button type="button"><a href="{% url 'update' %}">Update</a></button>
-=======
-</section>
->>>>>>> 09a7a285072bd91846a42435a6ab6895a7a4965a
+<button type="button"><a href="{% url 'updatepage' %}">Click Me!</a></button>
 {% endblock %}
