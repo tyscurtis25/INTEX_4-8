@@ -7,9 +7,10 @@
         </header><!--end header-->
         <!-- Navbar End -->
         <!-- Hero Start -->
+        
         <!-- Feature Start -->
         <div class="container mt-100 mt-60">
-        <div class="row align-items-center">
+        <div class="row align-items-top">
             <div class="col-lg-7 col-md-6 order-2 order-md-1 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <div class="section-title">
                     <h4 class="title mb-4">Welcome to the <span class="text-primary">Prescriber Portal</span></h4>
@@ -27,44 +28,82 @@
 
             <div class="col-lg-5 col-md-6 order-1 order-md-2">
                 <div class="card rounded border-0 shadow ms-lg-5">
-                    <div class="card-body"><h4 class="text-center">Update a Prescription</h4>
+                    <div class="card-body"><h4 class="text-center">Add a new record!</h4>
                         <div class="content mt-4 pt-2">
-                            <form action="{% url 'dataup' %}" method="post">
+                            <form action="{% url 'dataAdd' %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label class="form-label">Enter prescriber npi : <span class="text-danger">*</span></label>
+                                            <label class="form-label">Enter First Name : <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
                                                 <i data-feather="user" class="fea icon-sm icons"></i>
-                                                <input type="text" class="form-control ps-5" name="name" required="">
+                                                <input type="text" class="form-control ps-5" name="first_name" required="">
                                             </div>
                                         </div>
-                                    </div><!--end col-->
-
-                                    <div class="col-lg-12">
                                         <div class="mb-3">
-                                            <label class="form-label">Select Drug Name from Dropdown : <span class="text-danger">*</span></label>
-                                            <div class="">
-                                                <select class="form-icon position-relative" name="drug-dropdown">
-                                                    {% for item in drugs %}
-                                                        <option>{{ item.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div><!--end col-->
-
-                                    <div class="col-lg-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Enter Number of Drug Prescriptions : <span class="text-danger">*</span></label>
+                                            <label class="form-label">Enter Last Name : <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
-                                                <i data-feather="key" class="fea icon-sm icons"></i>
-                                                <input type="text" class="form-control ps-5" name="numdrugs">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="last_name" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Email : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="email" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Phone : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="phone" required="">
                                             </div>
                                         </div>
                                     </div><!--end col-->
-
+        
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Gender : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="gender" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Prescriber ID (NPI) : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="npi" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Are they an Opioid Prescriber? : <span class="text-danger">*</span></label>
+                                            <div class="">
+                                                <input type="radio" id="yes_opi" name="is_opi" value="Yes">
+                                                <label for="yes_opi">Yes</label><br>
+                                                <input type="radio" id="no_opi" name="is_opi" value="No">
+                                                <label for="no_opi">No</label><br>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter State : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="state" required="">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Enter Specialty : <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <i data-feather="user" class="fea icon-sm icons"></i>
+                                                <input type="text" class="form-control ps-5" name="specialty" required="">
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+        
                                     <div class="col-lg-12 mt-2 mb-0">
                                         <div class="d-grid">
                                             <button class="btn btn-primary" type="submit">Submit</button>
@@ -78,253 +117,14 @@
             </div><!--end col-->
         </div><!--end row-->
         </div><!--end container-->
-        <!-- Feature End -->
-        {% comment %} <div class="card shadow border-0 p-4 pb-0 rounded">
-            <div class="row align-items-between">
-                <div class="row">
-                    <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                        <div class="card rounded border-0 shadow ms-lg-5">
-                            <div class="card-body"><h4 class="text-center">Filter Details View</h4>
-                                <div class="content mt-4 pt-2">
 
-                                    <form action="{% url 'prescriber' %}" method="post" >
-                                        {% csrf_token %}
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by First Name : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="fname" class="form-control ps-5" name="fname">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by Last Name : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="lname" class="form-control ps-5" name="lname">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by Gender : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="gender1" class="form-control ps-5" name="gender1">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by Credentials : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="creds" class="form-control ps-5" name="creds">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by Location : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="state1" class="form-control ps-5" name="state1">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Filter by Speciality : </label>
-                                                    <div class="form-icon position-relative">
-                                                        <i data-feather="key" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty1">
-                                                    </div>
-                                                </div>
-                                            </div><!--end col-->
-
-                                            <div class="col-lg-12 mt-2 mb-0">
-                                                <div class="d-grid">
-                                                    <button class="btn btn-primary">Filter</button>
-                                                </div>
-                                            </div><!--end col-->
-                                        </div>
-                                    </form>
-                                    
-                                    
-                                </div>
-                            </div>
-                            
-                        </div>
-                        </div>
-                        <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                            <div class="grid-container">
-                                <div class="d-flex justify-content">
-                                    {% comment %} <h6 class="mb-0 fw-bold ">Drugs Prescribed Summary</h6> 
-                                    <div class="">    
-                                        
-                                        <div style="height:700px;
-                                        overflow:auto;box-shadow: 0 0 3px  !important;">
-                                        <table>
-                                            <style>
-                                                table {
-                                                    
-                                                    table-layout: fixed;
-                                                    width: 200px;
-                                                    vertical-align: middle;
-                                                    text-align: center;
-                                                    
-                                                  }
-                                                  
-                                                  th,
-                                                  td {
-                                                    
-                                                    width: 100px;
-                                                    overflow: hidden;
-                                                    border: 1px rgba(60, 72, 88, 0.15);
-                                                    padding: 5px;
-                                                    font-size: 14px;
-                                                  }
-                                                  td + td, th + th {
-                                                    border-left: 1px solid #999;
-                                                }
-                                        
-                                                th, tr td {
-                                                    border-bottom: 1px solid #999;
-                                                }
-
-                                        </style>
-                                            {% comment %} <style></style>
-                                            <tr>
-                                                <th style="font-family: 'Libre Baskerville', serif;">NPI</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">Last Name</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">First Name</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">Gender</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">Credentials</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">Location</th>
-                                                <th style="font-family: 'Libre Baskerville', serif;">Specialty</th>
-                                            </tr>
-                                            {% for items in dynamic %}
-                                            <tr>
-                                                <th><a href="{% url 'drug' npi=items.1 %}">{{items.1}}</a></th>
-                                                <th>{{ items.6 }}</th>
-                                                <th>{{ items.7 }}</th>
-                                                <th>{{ items.10 }}</th>
-                                                <th>{{ items.12 }}</th>
-                                                <th>{{ items.4 }}</th>
-                                                <th>{{ items.2 }}</th> 
-                                            </tr>
-                                            {% endfor %}
-                                        </table>
-                                        
-                                    </div>
-                                    <br><br>
-                                    </div> 
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--end col-->
-                </div>
-            </div>
-        </div> {% endcomment %}
         <div class="card shadow border-0 p-4 pb-0 rounded">
             <div class="row align-items-between">
         <div class="col-lg-5 col-md-6 order-1 order-md-2">
-            <div class="card rounded border-0 shadow ms-lg-5">
-                <div class="card-body"><h4 class="text-center">Update a Prescription</h4>
-                    <div class="content mt-4 pt-2">
-                        <form action="{% url 'dataAdd' %}" method="post">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter First Name : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="first_name" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Last Name : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="last_name" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Email : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="email" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Phone : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="phone" required="">
-                                        </div>
-                                    </div>
-                                </div><!--end col-->
-
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Gender : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="gender" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Prescriber ID (NPI) : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="npi" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Are they an Opioid Prescriber? : <span class="text-danger">*</span></label>
-                                        <div class="">
-                                            <input type="radio" id="yes_opi" name="is_opi" value="Yes">
-                                            <label for="yes_opi">Yes</label><br>
-                                            <input type="radio" id="no_opi" name="is_opi" value="No">
-                                            <label for="no_opi">No</label><br>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter State : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="state" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Enter Specialty : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="specialty" required="">
-                                        </div>
-                                    </div>
-                                </div><!--end col-->
-
-                                <div class="col-lg-12 mt-2 mb-0">
-                                    <div class="d-grid">
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>
-                                </div><!--end col-->
-                            </div>
-                        </form>                                    
-                    </div>
-                </div>
-            </div><br><br>
+            
         </div><!--end col-->
     </div>
 </div>
         {% endblock %}
+
+        

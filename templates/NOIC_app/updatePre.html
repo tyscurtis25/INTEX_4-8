@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>NOIC | Log in</title>
+        <title>NOIC | update prescriber</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
         <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
@@ -53,63 +53,58 @@
 
         <!-- Hero Start -->
         <section class="bg-home bg-circle-gradiant d-flex align-items-center">
-            <div class="container">
+            <div class="container"><br><br><br>
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-8"> 
-                        <div class="card login-page bg-white shadow rounded border-0">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Login</h4> 
-
-                                <form class="login-form mt-4" method="post" action="{% url 'signin' %}">
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Username<span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                    <input type="text" id="username" class="form-control ps-5" placeholder="Username" name="username" required="">
-                                                </div>
-                                            </div>
-                                        </div><!--end col-->
-                            
-
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Password <span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <i data-feather="key" class="fea icon-sm icons"></i>
-                                                    <input type="password" id="password" name="password" class="form-control ps-5" placeholder="Password" required="">
-                                                </div>
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-lg-12">
-                                            <div class="d-flex justify-content-between">
+                        <div class="card rounded border-0 shadow ms-lg-5">
+                            <div class="card-body"><h4 class="text-center">Update a Prescription</h4>
+                                <div class="content mt-4 pt-2">
+                                    <form action="{% url 'dataup' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                        <label class="form-check-label" for="flexCheckDefault">Remember me</label>
+                                                    <label class="form-label">Enter prescriber npi : <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" class="form-control ps-5" name="name" required="">
                                                     </div>
                                                 </div>
-                                                <p class="forgot-pass mb-0"><a href="auth-re-password-three.html" class="text-dark fw-bold">Forgot password ?</a></p>
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-lg-12 mb-0">
-                                            <div class="d-grid">
-                                                <button class="btn btn-primary" type="button" href="{% url 'chooseP' %}">Sign in</button>
-                                            </div>
-                                        </div><!--end col-->
-
-                                        <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark me-2">Don't have an account ?</small> <a href="{% url 'createaccount' %}" class="text-dark fw-bold">Sign Up</a></p>
-                                        </div><!--end col-->
-                                    </div><!--end row-->
-                                </form>
-
+                                            </div><!--end col-->
+                
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Select Drug Name from Dropdown : <span class="text-danger">*</span></label>
+                                                    <div class="">
+                                                        <select class="form-icon position-relative" name="drug-dropdown">
+                                                            {% for item in drugs %}
+                                                                <option>{{ item.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Enter Number of Drug Prescriptions : <span class="text-danger">*</span></label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="key" class="fea icon-sm icons"></i>
+                                                        <input type="text" class="form-control ps-5" name="numdrugs">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                
+                                            <div class="col-lg-12 mt-2 mb-0">
+                                                <div class="d-grid">
+                                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div>
+                                    </form>                                    
+                                </div>
                             </div>
-                        </div><!---->
+                        </div><br><br>
                     </div><!--end col-->
                 </div><!--end row-->
             </div> <!--end container-->

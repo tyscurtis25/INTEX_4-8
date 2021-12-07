@@ -3,31 +3,73 @@
 {% load static %}
 
 {% block content %}
-<div class="row">
-    <div class="">
-        <div class="card shadow border-0 p-4 pb-0 rounded">
-            <div class="d-flex justify-content-between">
+                </ul><!--end navigation menu-->
+            </div><!--end navigation-->
+        </div><!--end container-->
+    </header><!--end header-->
+    <!-- Navbar End -->
+    <!-- Hero Start -->
+    <!-- Feature Start --><br><br><br><section>
+    <div class="col-lg-5 col-md-6 order-1 order-md-2">
+        <div class="grid-container">
+            <div class="d-flex justify-content">
+                <div class="row">
+                    <div class="">
+                        <div class="card shadow border-0 p-4 pb-0 rounded">
+                            <div class="d-flex justify-content-between">
           
-                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
-                <table>
-                    <tr>
-                        <th>DrugName</th>
-                        <th>IsOpioid</th>
-                        <th>See Top 10 Prescribers</th>
-                    </tr>
-                    {% for items in drug %}
-                        <tr class='clickable-row' data-href='url://'>
-                            <td>{{ items.name }}</td>
-                            <td>{{ items.is_opioid }}</td>
-                            <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-                    
-            
+                                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6> 
+                                <div style="height:700px; overflow:auto;box-shadow: 0 0 3px  !important;"> 
+                                    <table>
+                                        <style>
+                                            table {
+                                                
+                                                table-layout: fixed;
+                                                width: 200px;
+                                                vertical-align: middle;
+                                                text-align: center;
+                                                
+                                            }
+                                            
+                                            th,
+                                            td {
+                                                
+                                                width: 100px;
+                                                overflow: hidden;
+                                                border: 1px rgba(60, 72, 88, 0.15);
+                                                padding: 5px;
+                                                font-size: 14px;
+                                            }
+                                            td + td, th + th {
+                                                border-left: 1px solid #999;
+                                            }
+                                    
+                                            th, tr td {
+                                                border-bottom: 1px solid #999;
+                                            }
+
+                                        </style>
+                                        <tr>
+                                            <th style="font-family: 'Libre Baskerville', serif;">DrugName</th>
+                                            <th style="font-family: 'Libre Baskerville', serif;">IsOpioid</th>
+                                            <th style="font-family: 'Libre Baskerville', serif;">See Top 10 Prescribers</th>
+                                        </tr>
+                                        {% for items in drug %}
+                                            <tr class='clickable-row' data-href='url://'>
+                                                <td>{{ items.name }}</td>
+                                                <td>{{ items.is_opioid }}</td>
+                                                <td><button type="button"><a href="{% url 'top' dName=items.name %}">Click Me!</a></button></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 <br>
 {% endblock %}
