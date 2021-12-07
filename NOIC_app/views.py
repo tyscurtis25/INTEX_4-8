@@ -38,7 +38,7 @@ def showPrescriberPageView(request) :
         conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
         cur = conn.cursor()
 
-        a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+        a = 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
 
 
         
@@ -78,7 +78,7 @@ def showPrescriberPageView(request) :
     else :
         conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
         cur = conn.cursor()
-        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi LIMIT 30"""
+        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi Order by prescriber_id desc LIMIT 30"""
         cur.execute(x)
         x = cur.fetchall()
 
@@ -200,28 +200,68 @@ def drugViewPage(request, npi):
     
     
     avg = cur.execute("""select drug_id, Round(cast(count(drug_id)as decimal)/cast(count(distinct npi)as decimal), 2) as avg_drug
-from prescribeslink
-group by drug_id;""")
+    from prescribeslink
+    group by drug_id;""")
     x = cur.fetchall()
     print(x)
     print("hi")
 
     context = {
-        'drugs': data1,
+        'drugs': data1, 
         'count': datacount,
         'hello': data3,
-        'average': x,
-        
+        'average': x, 
     }
+
+    cur.close()
+    conn.close()
+
     return render(request, 'NOIC_app/drugview.html', context)
 
 
 
 def searchDrugPageView(request):
-    data = Drug.objects.all()[0:100]
+    data = Drug.objects.all()
+
+    if request.method == "POST" :
+
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        drugname = request.POST['dname']
+        isopioid = request.POST['is_opioid']
+
+        sql = "select * from drug"
+
+        if drugname != "" :
+            sql += " where name like " + "'" + drugname + "'"
+        
+        if isopioid != "" and drugname != "" :
+            sql += " and is_opioid=" + isopioid
+        elif isopioid != "":
+            sql += " where is_opioid=" + isopioid
+
+        cur.execute(sql)
+        x = cur.fetchall()
+        print(x)
+
+        cur.close()
+        conn.close()
+
+    else:
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        sql = """select * from drug limit 30"""
+
+        cur.execute(sql)
+        x = cur.fetchall()
+
+        cur.close()
+        conn.close()
 
     context = {
-        'drug' : data
+        'drug' : x,
     }
 
     return render(request, 'NOIC_app/drugsearch.html', context)
@@ -269,3 +309,9 @@ def deletePrescriber(request, npi) :
     data.delete()
 
     return showPrescriberPageView(request)
+
+def updatePrescriberPageView(request):
+
+
+    return render(request)
+
