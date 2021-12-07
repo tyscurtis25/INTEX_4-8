@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import drugViewPage, searchDrugPageView, showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView
+from .views import drugViewPage, searchDrugPageView, showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView, successfulAddView
 from .views import showGetHelpPageView, accountSetUpPageView, postAccountView, signInPageView, updateData,topTenPageView, choosePortalPageView, addData
 
 urlpatterns = [
@@ -17,4 +17,5 @@ urlpatterns = [
     path('drugsearch/topten/<str:dName>/', topTenPageView, name='top'),
     path('choosePortal/', choosePortalPageView, name='chooseP'),
     path("prescriber/added/", addData, name="dataAdd"),
+    path("successfulAdd/", successfulAddView, name="success"),
 ]

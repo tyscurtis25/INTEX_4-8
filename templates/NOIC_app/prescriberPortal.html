@@ -115,7 +115,7 @@
                                                     <label class="form-label">Filter by Gender : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="gender" class="form-control ps-5" name="gender">
+                                                        <input type="text" id="gender1" class="form-control ps-5" name="gender">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -135,7 +135,7 @@
                                                     <label class="form-label">Filter by Location : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="state" class="form-control ps-5" name="state">
+                                                        <input type="text" id="state1" class="form-control ps-5" name="state">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -145,7 +145,7 @@
                                                     <label class="form-label">Filter by Speciality : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="key" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="specialty" class="form-control ps-5" name="specialty">
+                                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -249,26 +249,36 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Enter Prescriber ID (NPI) : <span class="text-danger">*</span></label>
-                                        <div class="form-icon position-relative">
-                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="p_npi" required="">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
                                         <label class="form-label">Enter First Name : <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="new_first_name" required="">
+                                            <input type="text" class="form-control ps-5" name="first_name" required="">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Enter Last Name : <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="new_last_name" required="">
+                                            <input type="text" class="form-control ps-5" name="last_name" required="">
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Enter Email : <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" name="email" required="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Enter Phone : <span class="text-danger">*</span></label>
+                                        <div class="form-icon position-relative">
+                                            <i data-feather="user" class="fea icon-sm icons"></i>
+                                            <input type="text" class="form-control ps-5" name="phone" required="">
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+
+                                <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Enter Gender : <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
@@ -276,30 +286,27 @@
                                             <input type="text" class="form-control ps-5" name="gender" required="">
                                         </div>
                                     </div>
-                                </div><!--end col-->
-
-                                <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">Enter Credentials : <span class="text-danger">*</span></label>
+                                        <label class="form-label">Enter Prescriber ID (NPI) : <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="credentials" required="">
+                                            <input type="text" class="form-control ps-5" name="npi" required="">
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Select Drug Name from Dropdown : <span class="text-danger">*</span></label>
+                                        <label class="form-label">Are they an Opioid Prescriber? : <span class="text-danger">*</span></label>
                                         <div class="">
-                                            <select class="form-icon position-relative" name="opioid_pres">
-                                                <option>True</option>
-                                                <option>False</option>
-                                            </select>
+                                            <input type="radio" id="yes_opi" name="is_opi" value="Yes">
+                                            <label for="yes_opi">Yes</label><br>
+                                            <input type="radio" id="no_opi" name="is_opi" value="No">
+                                            <label for="no_opi">No</label><br>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Enter Location : <span class="text-danger">*</span></label>
+                                        <label class="form-label">Enter State : <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <i data-feather="user" class="fea icon-sm icons"></i>
-                                            <input type="text" class="form-control ps-5" name="location" required="">
+                                            <input type="text" class="form-control ps-5" name="state" required="">
                                         </div>
                                     </div>
                                     <div class="mb-3">
