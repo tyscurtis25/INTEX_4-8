@@ -17,82 +17,95 @@ def showLoginPageView(request) :
     return render(request, 'NOIC_app/login.html')
 
 def showPrescriberPageView(request) :
-    data = Drug.objects.all()
-    prescribe = Prescriber.objects.all()[0:10]
-    credentials = PrescriberCredential.objects.all()[0:10]
-    # print(prescribe.query)
-    # print(credentials.query)
+    # data = Drug.objects.all()
+    # prescribe = Prescriber.objects.all()[0:10]
+    # credentials = PrescriberCredential.objects.all()[0:10]
+    # # print(prescribe.query)
+    # # print(credentials.query)
 
-    if request.method == "POST": 
+    # if request.method == "POST": 
 
-        first_name1 = request.POST['fname']
-        last_name1 = request.POST['lname']
-        gend = request.POST['gender1']
-        state1 = request.POST['state1']
-        creds = request.POST['creds']
-        specialty1 = request.POST['specialty1']
+    #     first_name1 = request.POST['fname']
+    #     last_name1 = request.POST['lname']
+    #     gend = request.POST['gender1']
+    #     state1 = request.POST['state1']
+    #     creds = request.POST['creds']
+    #     specialty1 = request.POST['specialty1']
 
-        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
-        cur = conn.cursor()
+    #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    #     cur = conn.cursor()
 
+<<<<<<< HEAD
         a = 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+=======
+    #     a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+>>>>>>> 09a7a285072bd91846a42435a6ab6895a7a4965a
 
 
         
-        if first_name1 != '' :
-            a += ' first_name like ' + "'" + first_name1 + "'"
+    #     if first_name1 != '' :
+    #         a += ' first_name like ' + "'" + first_name1 + "'"
 
-        if last_name1 != '' and first_name1 != '':
-            a += ' and last_name like ' + "'" + last_name1 + "'" 
-        elif last_name1 != "" :
-            a += ' last_name like ' + "'" + last_name1 + "'" 
+    #     if last_name1 != '' and first_name1 != '':
+    #         a += ' and last_name like ' + "'" + last_name1 + "'" 
+    #     elif last_name1 != "" :
+    #         a += ' last_name like ' + "'" + last_name1 + "'" 
         
-        if gend != '' and (last_name1 != '' or first_name1 != '' ):
-            a += ' and gender like ' + "'" + gend + "'" 
-        elif gend != '' :
-            a += ' gender like ' + "'" + gend + "'" 
+    #     if gend != '' and (last_name1 != '' or first_name1 != '' ):
+    #         a += ' and gender like ' + "'" + gend + "'" 
+    #     elif gend != '' :
+    #         a += ' gender like ' + "'" + gend + "'" 
         
-        if state1 != '' and (gend != '' or last_name1 != '' or first_name1 != '') :
-            a += ' and state like ' + "'" + state1 + "'" 
-        elif state1 != '' :
-            a += ' state like ' + "'" + state1 + "'" 
+    #     if state1 != '' and (gend != '' or last_name1 != '' or first_name1 != '') :
+    #         a += ' and state like ' + "'" + state1 + "'" 
+    #     elif state1 != '' :
+    #         a += ' state like ' + "'" + state1 + "'" 
         
-        if creds != '' and (state1 != '' or gend != '' or last_name1 != '' or first_name1 != '' ):
-            a += ' and  credentials like ' + "'"  + creds + "'" 
-        elif creds != '' :
-            a += '  credentials like ' + "'"  + creds + "'" 
+    #     if creds != '' and (state1 != '' or gend != '' or last_name1 != '' or first_name1 != '' ):
+    #         a += ' and  credentials like ' + "'"  + creds + "'" 
+    #     elif creds != '' :
+    #         a += '  credentials like ' + "'"  + creds + "'" 
         
-        if specialty1 != '' and (creds != '' or state1 != '' or gend != '' or last_name1 != '' or first_name1 != '') :
-            a += ' and specialty like ' + "'" + specialty1 + "'" 
-        elif specialty1 != '' :
-            a += ' specialty like ' + "'" + specialty1 + "'" 
+    #     if specialty1 != '' and (creds != '' or state1 != '' or gend != '' or last_name1 != '' or first_name1 != '') :
+    #         a += ' and specialty like ' + "'" + specialty1 + "'" 
+    #     elif specialty1 != '' :
+    #         a += ' specialty like ' + "'" + specialty1 + "'" 
 
-        print(a) 
+    #     print(a) 
 
-        cur.execute(a)
-        x = cur.fetchall()
-        cur.close()
-        conn.close()
+    #     cur.execute(a)
+    #     x = cur.fetchall()
+    #     cur.close()
+    #     conn.close()
 
+<<<<<<< HEAD
     else :
         conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
         cur = conn.cursor()
         x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi Order by prescriber_id desc LIMIT 30"""
         cur.execute(x)
         x = cur.fetchall()
+=======
+    # else :
+    #     conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+    #     cur = conn.cursor()
+    #     x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi LIMIT 30"""
+    #     cur.execute(x)
+    #     x = cur.fetchall()
+>>>>>>> 09a7a285072bd91846a42435a6ab6895a7a4965a
 
-        cur.close()
-        conn.close()
+    #     cur.close()
+    #     conn.close()
 
-    context = {
-        'drugs' : data,
-        'pre' : prescribe,
-        'cred' : credentials,
-        'dynamic': x,
-    }
+    # context = {
+    #     'drugs' : data,
+    #     'pre' : prescribe,
+    #     'cred' : credentials,
+    #     'dynamic': x,
+    # }
 
 
-    return render(request, 'NOIC_app/prescriberPortal.html', context)
+    return render(request, 'NOIC_app/prescriberPortal.html')
 
 def showGovAgencyPageView(request) : 
     data = Drug.objects.all()
@@ -176,7 +189,82 @@ def updateData(request):
 
 
 def choosePortalPageView(request) :
-    return render(request, 'NOIC_app/choosePortal.html')
+    data = Drug.objects.all()
+    prescribe = Prescriber.objects.all()[0:10]
+    credentials = PrescriberCredential.objects.all()[0:10]
+    # print(prescribe.query)
+    # print(credentials.query)
+
+    if request.method == "POST": 
+
+        first_name1 = request.POST['fname']
+        last_name1 = request.POST['lname']
+        gend = request.POST['gender1']
+        state1 = request.POST['state1']
+        creds = request.POST['creds']
+        specialty1 = request.POST['specialty1']
+
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+
+        a= 'select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi where'
+
+
+        
+        if first_name1 != '' :
+            a += ' first_name like ' + "'" + first_name1 + "'"
+
+        if last_name1 != '' and first_name1 != '':
+            a += ' and last_name like ' + "'" + last_name1 + "'" 
+        elif last_name1 != "" :
+            a += ' last_name like ' + "'" + last_name1 + "'" 
+        
+        if gend != '' and (last_name1 != '' or first_name1 != '' ):
+            a += ' and gender like ' + "'" + gend + "'" 
+        elif gend != '' :
+            a += ' gender like ' + "'" + gend + "'" 
+        
+        if state1 != '' and (gend != '' or last_name1 != '' or first_name1 != '') :
+            a += ' and state like ' + "'" + state1 + "'" 
+        elif state1 != '' :
+            a += ' state like ' + "'" + state1 + "'" 
+        
+        if creds != '' and (state1 != '' or gend != '' or last_name1 != '' or first_name1 != '' ):
+            a += ' and  credentials like ' + "'"  + creds + "'" 
+        elif creds != '' :
+            a += '  credentials like ' + "'"  + creds + "'" 
+        
+        if specialty1 != '' and (creds != '' or state1 != '' or gend != '' or last_name1 != '' or first_name1 != '') :
+            a += ' and specialty like ' + "'" + specialty1 + "'" 
+        elif specialty1 != '' :
+            a += ' specialty like ' + "'" + specialty1 + "'" 
+
+        print(a) 
+
+        cur.execute(a)
+        x = cur.fetchall()
+        cur.close()
+        conn.close()
+
+    else :
+        conn = psy.connect(host="noic-server.postgres.database.azure.com", port= 5432, database='noic', user='noic', password='INTEX2021*')
+        cur = conn.cursor()
+        x = """select * from prescriber inner join person on prescriber.prescriber_id = person.person_id inner join prescriber_credential on prescriber_credential.npi = prescriber.npi LIMIT 30"""
+        cur.execute(x)
+        x = cur.fetchall()
+
+        cur.close()
+        conn.close()
+
+    context = {
+        'drugs' : data,
+        'pre' : prescribe,
+        'cred' : credentials,
+        'dynamic': x,
+    }
+
+
+    return render(request, 'NOIC_app/choosePortal.html/', context)
 
 
     
@@ -322,8 +410,8 @@ def addData(request):
         cur.close()
 
         conn.close()
-        return render(request, 'NOIC_app/successfulAdd.html')    
-    
+            
+        return render(request, 'NOIC_app/successfulAdd.html')
 
 def deletePrescriber(request, npi) :
     data = Prescriber.objects.get(id = npi)
