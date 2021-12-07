@@ -188,6 +188,8 @@ def updateData(request):
 
         newrecord.save()
 
+        return 
+
 
 def choosePortalPageView(request) :
     data = Drug.objects.all()
@@ -298,7 +300,7 @@ def drugViewPage(request, npi):
     context = {
         'drugs': data1, 
         'count': datacount,
-        'hello': data3,
+        'hello': data2,
         'average': x, 
     }
 
@@ -435,4 +437,7 @@ def successfulAddView(request) :
 
 def updatePrescriberPageView(request) :
     return render(request, "NOIC_app/updatePre.html")
+
+def successfulUpView(request) :
+    return render(request, 'NOIC_app/successupdate.html')
 

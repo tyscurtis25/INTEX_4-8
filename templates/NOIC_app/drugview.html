@@ -3,45 +3,73 @@
 {% load static %}
 
 {% block content %}
+<li><a href="{% url 'chooseP' %}" class="sub-menu-item">Choose Portal</a></li>
 </ul><!--end navigation menu-->
 </div><!--end navigation-->
 </div><!--end container-->
 </header><!--end header-->
 <!-- Navbar End -->
 <!-- Hero Start -->
-<!-- Feature Start -->
-<section class="bg-half-170 d-table w-100">
-<div class="row">
-    <div class="">
-        <div class="card shadow border-0 p-4 pb-0 rounded">
-            <div class="d-flex justify-content-between">
-          
-                <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
-                <ul>
-                {% for item in count %}
-                    {% for items in drugs %} 
-                        {% if item.drug == items.drug_id %}
-                            <li>{{items.drug.name}}</li>
-                        {% endif %}
+<div style="margin-top: 20px;">
+    <table cellpadding="0" cellspacing="0" style="font-family: Nunito, sans-serif; font-size: 15px; font-weight: 400; max-width: 600px; border: none; margin: 0 auto; border-radius: 6px; overflow: hidden; background-color: #fff; box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);">
+        <thead>
+            <tr style="background-color: #2f55d4; padding: 3px 0; border: none; line-height: 68px; text-align: center; color: #fff; font-size: 24px; letter-spacing: 1px;">
+                <th scope="col"><img height="24" alt="">
+                    {% for peep in hello %}
+                    <h6>Prescriber #{{ peep.npi }}</h6>
                     {% endfor %}
-                    <li> {{item.count_drug}}</li>
-                    {% for thing in average %} 
-                        {% if item.drug == thing.0 %}  
-                            <li> {{ thing.1 }}</li>
-                        {% endif %} 
-                    {% endfor %}   
-                    
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td style="padding: 48px 24px 0; color: #161c2d; font-size: 18px; font-weight: 600;">
+                    {% for peep in hello %}
+                    <h6>{{ peep.prescriber.first_name }} {{ peep.prescriber.last_name }}</h6>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 15px 24px 15px; color: #8492a6;">
+                    <div class="d-flex justify-content-between">
+                
+          
+                        <h6 class="mb-0 fw-bold">{% for persons in hello %} {{ persons.first_name }} {%endfor%}</h6>  
+                        <ul>
+                        {% for item in count %}
+                            {% for items in drugs %} 
+                                {% if item.drug == items.drug_id %}
+                                    <li>{{items.drug.name}}</li>
+                                {% endif %}
+                            {% endfor %}
+                            <li> {{item.count_drug}}</li>
+                            {% for thing in average %} 
+                                {% if item.drug == thing.0 %}  
+                                    <li> {{ thing.1 }}</li>
+                                {% endif %} 
+                            {% endfor %}   
+                            
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 15px 24px;">
+                    <a style="padding: 8px 20px; outline: none; text-decoration: none; font-size: 16px; letter-spacing: 0.5px; transition: all 0.3s; font-weight: 600; border-radius: 6px; background-color: #2f55d4; border: 1px solid #2f55d4; color: #ffffff;" href="{% url 'update' %}">Update</a>
+                </td>
+            </tr>
+
+            
+
+            <br><br><br>
+        </tbody>
+    </table>
 </div>
-<<<<<<< HEAD
+<br><br><br>
 
 
-<button type="button"><a href="{% url 'update' %}">Update</a></button>
-=======
-</section>
->>>>>>> 09a7a285072bd91846a42435a6ab6895a7a4965a
+
 {% endblock %}

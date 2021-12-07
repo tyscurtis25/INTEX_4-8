@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import drugViewPage, searchDrugPageView, showGovAgencyPageView, showLandingPageView, showLoginPageView, showPrescriberPageView, successfulAddView, updatePrescriberPageView
 from .views import showGetHelpPageView, accountSetUpPageView, postAccountView, signInPageView, updateData,topTenPageView, choosePortalPageView, addData
-from .views import updatePrescriberPageView
+from .views import updatePrescriberPageView, successfulUpView
 
 urlpatterns = [
     path("", showLandingPageView, name="landingpage"),
@@ -21,4 +21,5 @@ urlpatterns = [
     path("prescriber/update/", updatePrescriberPageView, name='update' ),
     path("successfulAdd/", successfulAddView, name="success"),
     path("updatePre/", updatePrescriberPageView, name="updatePre"),
+    path("successfulUp/", successfulUpView, name="successUp"),
 ]
