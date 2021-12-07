@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block content %}
                     </ul><!--end navigation menu-->
                 </div><!--end navigation-->
             </div><!--end container-->
@@ -74,12 +74,12 @@
                             </form>                                    
                         </div>
                     </div>
-                </div>
+                </div><br><br>
             </div><!--end col-->
         </div><!--end row-->
         </div><!--end container-->
         <!-- Feature End -->
-        <div class="card shadow border-0 p-4 pb-0 rounded">
+        {% comment %} <div class="card shadow border-0 p-4 pb-0 rounded">
             <div class="row align-items-between">
                 <div class="row">
                     <div class="col-lg-5 col-md-6 order-1 order-md-2">
@@ -115,7 +115,7 @@
                                                     <label class="form-label">Filter by Gender : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="gender1" class="form-control ps-5" name="gender">
+                                                        <input type="text" id="gender1" class="form-control ps-5" name="gender1">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -135,7 +135,7 @@
                                                     <label class="form-label">Filter by Location : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="user" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="state1" class="form-control ps-5" name="state">
+                                                        <input type="text" id="state1" class="form-control ps-5" name="state1">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -145,7 +145,7 @@
                                                     <label class="form-label">Filter by Speciality : </label>
                                                     <div class="form-icon position-relative">
                                                         <i data-feather="key" class="fea icon-sm icons"></i>
-                                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty">
+                                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty1">
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
@@ -165,20 +165,51 @@
                         </div>
                         </div>
                         <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                            <div class="card rounded border-0 shadow ms-lg-5">
+                            <div class="grid-container">
                                 <div class="d-flex justify-content">
-                                    {% comment %} <h6 class="mb-0 fw-bold ">Drugs Prescribed Summary</h6> {% endcomment %}
-                                    <div class="grid-container">    
-                                        <br><br>
-                                        <table name="">
+                                    {% comment %} <h6 class="mb-0 fw-bold ">Drugs Prescribed Summary</h6> 
+                                    <div class="">    
+                                        
+                                        <div style="height:700px;
+                                        overflow:auto;box-shadow: 0 0 3px  !important;">
+                                        <table>
+                                            <style>
+                                                table {
+                                                    
+                                                    table-layout: fixed;
+                                                    width: 200px;
+                                                    vertical-align: middle;
+                                                    text-align: center;
+                                                    
+                                                  }
+                                                  
+                                                  th,
+                                                  td {
+                                                    
+                                                    width: 100px;
+                                                    overflow: hidden;
+                                                    border: 1px rgba(60, 72, 88, 0.15);
+                                                    padding: 5px;
+                                                    font-size: 14px;
+                                                  }
+                                                  td + td, th + th {
+                                                    border-left: 1px solid #999;
+                                                }
+                                        
+                                                th, tr td {
+                                                    border-bottom: 1px solid #999;
+                                                }
+
+                                        </style>
+                                            {% comment %} <style></style>
                                             <tr>
-                                                <th>NPI</th>
-                                                <th>Last Name</th>
-                                                <th>First Name</th>
-                                                <th>Gender</th>
-                                                <th>Credentials</th>
-                                                <th>Location</th>
-                                                <th>Specialty</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">NPI</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Last Name</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">First Name</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Gender</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Credentials</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Location</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Specialty</th>
                                             </tr>
                                             {% for items in dynamic %}
                                             <tr>
@@ -192,52 +223,17 @@
                                             </tr>
                                             {% endfor %}
                                         </table>
+                                        
+                                    </div>
+                                    <br><br>
                                     </div> 
-                    
-                                    {% comment %} <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> {% endcomment %}
-                    
-                                    {% comment %} 
-                                    <input type="text" id="myInput" 
-                                    onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-                    
-                                    <table id="myTable">
-                                    <tr class="header">
-                                        <th style="width:60%;">Name</th>
-                                        <th style="width:40%;">Country</th>
-                                    </tr>{% endcomment %}
-                                    
-                    
-                                    {% comment %} <script>
-                                    function myFunction() {
-                                    var input, filter, table, tr, td, i, txtValue;
-                                    input = document.getElementById("myInput");
-                                    filter = input.value.toUpperCase();
-                                    table = document.getElementById("myTable");
-                                    tr = table.getElementsByTagName("tr");
-                                    for (i = 0; i < tr.length; i++) {
-                                        td = tr[i].getElementsByTagName("td")[0];
-                                        if (td) {
-                                        txtValue = td.textContent || td.innerText;
-                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                            tr[i].style.display = "";
-                                        } else {
-                                            tr[i].style.display = "none";
-                                        }
-                                        }       
-                                    }
-                                    }
-                                    </script> {% endcomment %}
-                                    
-                                    <!-- this is where we should insert some data-->
                                 </div>
                             </div>
                         </div>
-                        
                     </div><!--end col-->
                 </div>
-        
             </div>
-        </div>
+        </div> {% endcomment %}
         <div class="card shadow border-0 p-4 pb-0 rounded">
             <div class="row align-items-between">
         <div class="col-lg-5 col-md-6 order-1 order-md-2">
@@ -327,8 +323,8 @@
                         </form>                                    
                     </div>
                 </div>
-            </div>
+            </div><br><br>
         </div><!--end col-->
     </div>
 </div>
-{% endblock %}
+        {% endblock %}

@@ -10,7 +10,7 @@
 <!-- Feature Start -->
 
         <!-- Hero Start -->
-        <section class="bg-half-170 d-table w-100" style="background: url('images/company/aboutus.jpg');">
+        <section class="bg-half-170 d-table w-100" style="background: url('{% static 'images/pattern.jpg' %}');">
             <div class="bg-overlay"></div>
             <div class="container">
                 <div class="row mt-5 justify-content-center">
@@ -19,19 +19,22 @@
                             <h2 class="text-white title-dark"> Choose Portal </h2>
                             <p class="text-white-50 para-desc mb-0 mx-auto">Please help me come up with a better name for this page</p>
                         </div>
+                        <br><br>
+                        <div class="position-breadcrumb">
+                            <nav aria-label="breadcrumb" class="d-inline-block">
+                                <ul class="breadcrumb bg-white rounded shadow mb-0 px-4 py-2">
+                                    <li class="breadcrumb-item"><a href="#filter">Filter Details</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'prescriber' %}">Prescriber Portal</a></li>
+                                    <li class="breadcrumb-item active"><a href="{% url 'landingpage' %}">Drug Portal</a></li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div><!--end col-->
-                </div><!--end row--> 
+                    
+                </div><!--end row-->
                 
-                <div class="position-breadcrumb">
-                    <nav aria-label="breadcrumb" class="d-inline-block">
-                        <ul class="breadcrumb bg-white rounded shadow mb-0 px-4 py-2">
-                            <li class="breadcrumb-item"><a href="{% url 'landingpage' %}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{% url 'prescriber' %}">Prescriber Portal</a></li>
-                            <li class="breadcrumb-item active"><a href="{% url 'landingpage' %}">Drug Portal</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> <!--end container-->
+                
+            </div> <!--end container--> 
         </section><!--end section-->
         <div class="position-relative">
             <div class="shape overflow-hidden text-white">
@@ -41,128 +44,164 @@
             </div>
         </div>
         <!-- Hero End -->
+        <section><div id="filter"></div>
+            <br><br><br><br>
+        <div class="card shadow border-0 p-4 pb-0 rounded">
+            <div class="row align-items-between">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 order-1 order-md-2">
+                        <div class="card rounded border-0 shadow ms-lg-5">
+                            <div class="card-body"><h4 class="text-center">Filter Details View</h4>
+                                <div class="content mt-4 pt-2">
 
-        {% comment %} <section class="section"> {% endcomment %}
-            <div class="card shadow border-0 p-4 pb-0 rounded">
-                <div class="row align-items-between">
-                    <div class="row">
+                                    <form action="{% url 'chooseP' %}" method="post" >
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by First Name : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="fname" class="form-control ps-5" name="fname">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by Last Name : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="lname" class="form-control ps-5" name="lname">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by Gender : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="gender1" class="form-control ps-5" name="gender1">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by Credentials : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="creds" class="form-control ps-5" name="creds">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by Location : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="user" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="state1" class="form-control ps-5" name="state1">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Filter by Speciality : </label>
+                                                    <div class="form-icon position-relative">
+                                                        <i data-feather="key" class="fea icon-sm icons"></i>
+                                                        <input type="text" id="specialty1" class="form-control ps-5" name="specialty1">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+
+                                            <div class="col-lg-12 mt-2 mb-0">
+                                                <div class="d-grid">
+                                                    <button class="btn btn-primary">Filter</button>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div>
+                                    </form>
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div>
                         <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                            <div class="card rounded border-0 shadow ms-lg-5">
-                                <div class="card-body"><h4 class="text-center">Filter Details View</h4>
-                                    <div class="content mt-4 pt-2">
-    
-                                        <form action="{% url 'prescriber' %}" method="post" >
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by First Name : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="fname" class="form-control ps-5" name="fname">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by Last Name : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="lname" class="form-control ps-5" name="lname">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by Gender : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="gender1" class="form-control ps-5" name="gender">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by Credentials : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="creds" class="form-control ps-5" name="creds">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by Location : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="user" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="state1" class="form-control ps-5" name="state">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Filter by Speciality : </label>
-                                                        <div class="form-icon position-relative">
-                                                            <i data-feather="key" class="fea icon-sm icons"></i>
-                                                            <input type="text" id="specialty1" class="form-control ps-5" name="specialty">
-                                                        </div>
-                                                    </div>
-                                                </div><!--end col-->
-    
-                                                <div class="col-lg-12 mt-2 mb-0">
-                                                    <div class="d-grid">
-                                                        <button class="btn btn-primary">Filter</button>
-                                                    </div>
-                                                </div><!--end col-->
-                                            </div>
-                                        </form>
+                            <div class="grid-container">
+                                <div class="d-flex justify-content">
+                                    {% comment %} <h6 class="mb-0 fw-bold ">Drugs Prescribed Summary</h6> {% endcomment %}
+                                    <div class="">    
                                         
+                                        <div style="height:700px;
+                                        overflow:auto;box-shadow: 0 0 3px  !important;">
+                                        <table>
+                                            <style>
+                                                table {
+                                                    
+                                                    table-layout: fixed;
+                                                    width: 200px;
+                                                    vertical-align: middle;
+                                                    text-align: center;
+                                                    
+                                                  }
+                                                  
+                                                  th,
+                                                  td {
+                                                    
+                                                    width: 100px;
+                                                    overflow: hidden;
+                                                    border: 1px rgba(60, 72, 88, 0.15);
+                                                    padding: 5px;
+                                                    font-size: 14px;
+                                                  }
+                                                  td + td, th + th {
+                                                    border-left: 1px solid #999;
+                                                }
+                                        
+                                                th, tr td {
+                                                    border-bottom: 1px solid #999;
+                                                }
+
+                                        </style>
+                                            {% comment %} <style></style> {% endcomment %}
+                                            <tr>
+                                                <th style="font-family: 'Libre Baskerville', serif;">NPI</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Last Name</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">First Name</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Gender</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Credentials</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Location</th>
+                                                <th style="font-family: 'Libre Baskerville', serif;">Specialty</th>
+                                            </tr>
+                                            {% for items in dynamic %}
+                                            <tr>
+                                                <th><a href="{% url 'drug' npi=items.1 %}">{{items.1}}</a></th>
+                                                <th>{{ items.6 }}</th>
+                                                <th>{{ items.7 }}</th>
+                                                <th>{{ items.10 }}</th>
+                                                <th>{{ items.12 }}</th>
+                                                <th>{{ items.4 }}</th>
+                                                <th>{{ items.2 }}</th> 
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
                                         
                                     </div>
-                                </div>
-                                
-                            </div>
-                            </div>
-                            <div class="col-lg-5 col-md-6 order-1 order-md-2">
-                                <div class="card rounded border-0 shadow ms-lg-5">
-                                    <div class="d-flex justify-content">
-                                        {% comment %} <h6 class="mb-0 fw-bold ">Drugs Prescribed Summary</h6> {% endcomment %}
-                                        <div class="grid-container">    
-                                            <br><br>
-                                            <table name="">
-                                                <tr>
-                                                    <th>NPI</th>
-                                                    <th>Last Name</th>
-                                                    <th>First Name</th>
-                                                    <th>Gender</th>
-                                                    <th>Credentials</th>
-                                                    <th>Location</th>
-                                                    <th>Specialty</th>
-                                                </tr>
-                                                {% for items in dynamic %}
-                                                <tr>
-                                                    <th><a href="{% url 'drug' npi=items.1 %}">{{items.1}}</a></th>
-                                                    <th>{{ items.6 }}</th>
-                                                    <th>{{ items.7 }}</th>
-                                                    <th>{{ items.10 }}</th>
-                                                    <th>{{ items.12 }}</th>
-                                                    <th>{{ items.4 }}</th>
-                                                    <th>{{ items.2 }}</th> 
-                                                </tr>
-                                                {% endfor %}
-                                            </table>
-                                        </div> 
-                                    </div>
+                                    <br><br>
+                                    </div> 
                                 </div>
                             </div>
-                        </div><!--end col-->
-                    </div>
+                        </div>
+                    </div><!--end col-->
                 </div>
             </div>
-        {% comment %} </section> {% endcomment %}
+        </div>
+    </section>
+
+        
         {% endblock %}
